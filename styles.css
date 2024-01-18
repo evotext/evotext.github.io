@@ -71,6 +71,10 @@ h2 {
     margin-bottom: 1rem; /* Spacing below headers */
 }
 
+.top-margin {
+    margin-top: 2em; /* Adjust this value as needed */
+}
+
 .bottom-margin {
     margin-bottom: 2em; /* Adjust this value as needed */
 }
