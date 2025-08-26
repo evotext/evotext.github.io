@@ -1,0 +1,1072 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced Features &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'advanced_features';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/advanced_features.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Command-Line Interface Guide" href="cli_guide.html" />
+    <link rel="prev" title="Boston Housing Dataset Example" href="housing_example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/advanced_features.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced Features</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-architecture-search-nas">Neural Architecture Search (NAS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-missing-value-imputation">Advanced Missing Value Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-encoding-strategies">Categorical Encoding Strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-neural-networks">Multi-Layer Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-dimension-selection">Automatic Dimension Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastive-learning-mode">Contrastive Learning Mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-serialization-with-metadata">Model Serialization with Metadata</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-model-saving-with-rich-metadata">Advanced model saving with rich metadata:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-validation-in-production">Schema Validation in Production</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-model-serialization">Best Practices for Model Serialization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-configuration-objects">Custom Configuration Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-monitoring">Performance Monitoring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-considerations">Production Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-features">
+<h1>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">#</a></h1>
+<p>Row2Vec includes several advanced features for expert users and production workflows.</p>
+<section id="neural-architecture-search-nas">
+<h2>Neural Architecture Search (NAS)<a class="headerlink" href="#neural-architecture-search-nas" title="Link to this heading">#</a></h2>
+<p>Automatically find optimal neural network architectures:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import complete suppression first</span>
+<span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;suppress_minimal.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ArchitectureSearchConfig</span><span class="p">,</span>
+    <span class="n">search_architecture</span><span class="p">,</span>
+    <span class="n">generate_synthetic_data</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate test data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">generate_synthetic_data</span><span class="p">(</span><span class="n">num_records</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test data shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure architecture search</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">ArchitectureSearchConfig</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">,</span>        <span class="c1"># Random search (faster than grid)</span>
+    <span class="n">max_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>          <span class="c1"># Search up to 3 hidden layers</span>
+    <span class="n">width_options</span><span class="o">=</span><span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>  <span class="c1"># Neuron options per layer</span>
+    <span class="n">max_trials</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>          <span class="c1"># Number of architectures to try (reduced for demo)</span>
+    <span class="n">initial_epochs</span><span class="o">=</span><span class="mi">10</span>      <span class="c1"># Reduced epochs for faster demo</span>
+<span class="p">)</span>
+
+<span class="c1"># Run architecture search</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Searching for optimal architecture...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Need base config for architecture search</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">NeuralConfig</span>
+<span class="n">base_config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">neural</span><span class="o">=</span><span class="n">NeuralConfig</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">best_architecture</span><span class="p">,</span> <span class="n">search_results</span> <span class="o">=</span> <span class="n">search_architecture</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">base_config</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Best architecture found:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Architecture: </span><span class="si">{</span><span class="n">best_architecture</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Search completed in </span><span class="si">{</span><span class="n">search_results</span><span class="o">.</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the best architecture</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding</span>
+
+<span class="c1"># Apply the best architecture found</span>
+<span class="n">best_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="o">=</span><span class="n">best_architecture</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hidden_units&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">128</span><span class="p">]),</span>
+    <span class="n">dropout_rate</span><span class="o">=</span><span class="n">best_architecture</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dropout_rate&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimized embeddings shape: </span><span class="si">{</span><span class="n">best_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 3 embeddings using best architecture:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">best_embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-missing-value-imputation">
+<h2>Advanced Missing Value Imputation<a class="headerlink" href="#advanced-missing-value-imputation" title="Link to this heading">#</a></h2>
+<p>Intelligent missing value handling with multiple strategies:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ImputationConfig</span><span class="p">,</span>
+    <span class="n">AdaptiveImputer</span><span class="p">,</span>
+    <span class="n">MissingPatternAnalyzer</span>
+<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create data with missing values</span>
+<span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Introduce different types of missing patterns</span>
+<span class="n">df_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df_missing</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="s1">&#39;Sales&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df_missing</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="s1">&#39;Product&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df_missing</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing values introduced:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_missing</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze missing patterns</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">ImputationConfig</span><span class="p">()</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">MissingPatternAnalyzer</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">df_missing</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing value analysis:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Total missing: </span><span class="si">{</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;total_missing&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Missing percentage: </span><span class="si">{</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;missing_percentage&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Columns with missing: </span><span class="si">{</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;columns_with_missing&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Recommendations: </span><span class="si">{</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;recommendations&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply different imputation strategies</span>
+<span class="n">strategies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;adaptive&#39;</span><span class="p">:</span> <span class="n">ImputationConfig</span><span class="p">(),</span>
+    <span class="s1">&#39;knn&#39;</span><span class="p">:</span> <span class="n">ImputationConfig</span><span class="p">(</span>
+        <span class="n">numeric_strategy</span><span class="o">=</span><span class="s1">&#39;knn&#39;</span><span class="p">,</span>
+        <span class="n">categorical_strategy</span><span class="o">=</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span>
+        <span class="n">knn_neighbors</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;iterative&#39;</span><span class="p">:</span> <span class="n">ImputationConfig</span><span class="p">(</span>
+        <span class="n">numeric_strategy</span><span class="o">=</span><span class="s1">&#39;iterative&#39;</span><span class="p">,</span>
+        <span class="n">categorical_strategy</span><span class="o">=</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span>
+        <span class="n">categorical_fill_value</span><span class="o">=</span><span class="s1">&#39;Missing&#39;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">strategy_config</span> <span class="ow">in</span> <span class="n">strategies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">imputer</span> <span class="o">=</span> <span class="n">AdaptiveImputer</span><span class="p">(</span><span class="n">strategy_config</span><span class="p">)</span>
+    <span class="n">df_imputed</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_missing</span><span class="p">)</span>
+
+    <span class="n">remaining_missing</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">12</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">remaining_missing</span><span class="si">}</span><span class="s2"> missing values remaining&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="categorical-encoding-strategies">
+<h2>Categorical Encoding Strategies<a class="headerlink" href="#categorical-encoding-strategies" title="Link to this heading">#</a></h2>
+<p>Advanced categorical feature handling:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding_v2</span><span class="p">,</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">PreprocessingConfig</span>
+
+<span class="c1"># Test different categorical encoding strategies</span>
+<span class="n">encoding_strategies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;adaptive&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">encoding_strategies</span><span class="p">:</span>
+    <span class="c1"># Create complete config with categorical encoding strategy</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+        <span class="n">preprocessing</span><span class="o">=</span><span class="n">PreprocessingConfig</span><span class="p">(</span>
+            <span class="n">categorical_encoding_strategy</span><span class="o">=</span><span class="n">strategy</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding_v2</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">strategy</span><span class="si">:</span><span class="s2">12</span><span class="si">}</span><span class="s2">: shape </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, mean=</span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multi-layer-neural-networks">
+<h2>Multi-Layer Neural Networks<a class="headerlink" href="#multi-layer-neural-networks" title="Link to this heading">#</a></h2>
+<p>Deep architectures for complex patterns:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare single vs multi-layer networks</span>
+<span class="n">architectures</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Single Layer&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">128</span><span class="p">],</span>
+    <span class="s1">&#39;Two Layer&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="s1">&#39;Three Layer&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">hidden_units</span> <span class="ow">in</span> <span class="n">architectures</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">hidden_units</span><span class="o">=</span><span class="n">hidden_units</span><span class="p">,</span>
+        <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Calculate some basic metrics</span>
+    <span class="n">mean_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">std_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">: mean=</span><span class="si">{</span><span class="n">mean_emb</span><span class="si">:</span><span class="s2">7.3f</span><span class="si">}</span><span class="s2">, std=</span><span class="si">{</span><span class="n">std_emb</span><span class="si">:</span><span class="s2">6.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="automatic-dimension-selection">
+<h2>Automatic Dimension Selection<a class="headerlink" href="#automatic-dimension-selection" title="Link to this heading">#</a></h2>
+<p>Find optimal embedding dimensions:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">auto_select_dimension</span><span class="p">,</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">NeuralConfig</span>
+
+<span class="c1"># Create base config for dimension selection</span>
+<span class="n">base_config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">neural</span><span class="o">=</span><span class="n">NeuralConfig</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Test dimensions from 2 to 10</span>
+<span class="n">optimal_dim</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">auto_select_dimension</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">base_config</span><span class="p">,</span>
+    <span class="n">min_dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">max_dimension</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Reduced for demo</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal embedding dimension: </span><span class="si">{</span><span class="n">optimal_dim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Dimension evaluation results:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">dim</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot; &lt;-- OPTIMAL&quot;</span> <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="n">optimal_dim</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="c1"># Handle case where score might be a dict, list, or other format</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># Try common score keys</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">score</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="n">score</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)))</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">score_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="k">if</span> <span class="n">score</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+            <span class="n">score_val</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">dim</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">D: </span><span class="si">{</span><span class="n">score_val</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}{</span><span class="n">marker</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="contrastive-learning-mode">
+<h2>Contrastive Learning Mode<a class="headerlink" href="#contrastive-learning-mode" title="Link to this heading">#</a></h2>
+<p>Advanced embedding technique (if available):</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Try to use contrastive learning functionality if available</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding</span>
+
+    <span class="c1"># Use regular neural embeddings as contrastive learning may not be available</span>
+    <span class="c1"># in the current API version</span>
+    <span class="n">contrastive_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Neural embeddings shape: </span><span class="si">{</span><span class="n">contrastive_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 3 embeddings (using standard neural approach):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contrastive_embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Note: Advanced contrastive learning features may require specific Row2Vec versions&quot;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Advanced contrastive learning mode not available: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-serialization-with-metadata">
+<h2>Model Serialization with Metadata<a class="headerlink" href="#model-serialization-with-metadata" title="Link to this heading">#</a></h2>
+<p>Row2Vec provides powerful model serialization capabilities for production workflows. The system uses a <strong>two-file approach</strong> for transparency and efficiency:</p>
+<ol class="arabic simple">
+<li><p><strong>Python script (.py)</strong>: Contains inspectable metadata and loading logic</p></li>
+<li><p><strong>Binary file (.pkl)</strong>: Contains the actual model weights and preprocessor</p></li>
+</ol>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Transparent metadata</strong>: All training configuration and results stored in readable format</p></li>
+<li><p><strong>Complete pipeline preservation</strong>: Includes preprocessing steps, not just the model</p></li>
+<li><p><strong>Schema validation</strong>: Automatically validates input data against expected schema</p></li>
+<li><p><strong>Multiple model support</strong>: Works with neural networks and classical ML methods</p></li>
+<li><p><strong>Detailed training information</strong>: Loss curves, timing, data characteristics, and more</p></li>
+</ul>
+</section>
+<section id="advanced-model-saving-with-rich-metadata">
+<h3>Advanced model saving with rich metadata:<a class="headerlink" href="#advanced-model-saving-with-rich-metadata" title="Link to this heading">#</a></h3>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">learn_embedding_with_model</span><span class="p">,</span>
+    <span class="n">save_model</span><span class="p">,</span>
+    <span class="n">Row2VecModel</span><span class="p">,</span>
+    <span class="n">Row2VecModelMetadata</span>
+<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Train with full model information</span>
+<span class="n">embeddings</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">learn_embedding_with_model</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training completed:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final loss: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;final_loss&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;N/A&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training time: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;training_time&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Epochs trained: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;epochs_trained&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create rich model object with metadata</span>
+<span class="n">row2vec_model</span> <span class="o">=</span> <span class="n">Row2VecModel</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">preprocessor</span><span class="o">=</span><span class="n">preprocessor</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="n">Row2VecModelMetadata</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Save model with comprehensive information</span>
+<span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
+    <span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="s2">&quot;advanced_model&quot;</span><span class="p">)</span>
+
+    <span class="n">script_path</span><span class="p">,</span> <span class="n">binary_path</span> <span class="o">=</span> <span class="n">save_model</span><span class="p">(</span><span class="n">row2vec_model</span><span class="p">,</span> <span class="n">model_path</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model saved with metadata:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Script: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Binary: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">binary_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load and inspect metadata</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Loaded model metadata:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Data shape: </span><span class="si">{</span><span class="n">loaded_model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">data_shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Original columns: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">loaded_model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">original_columns</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">loaded_model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">original_columns</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Embedding dimension: </span><span class="si">{</span><span class="n">loaded_model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training epochs: </span><span class="si">{</span><span class="n">loaded_model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">epochs_trained</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final loss: </span><span class="si">{</span><span class="n">loaded_model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">final_loss</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="schema-validation-in-production">
+<h3>Schema Validation in Production<a class="headerlink" href="#schema-validation-in-production" title="Link to this heading">#</a></h3>
+<p>Models automatically validate input data against the expected schema:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load model for validation demonstration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_and_save_model</span><span class="p">,</span> <span class="n">load_model</span><span class="p">,</span> <span class="n">generate_synthetic_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
+    <span class="c1"># Create a small model for demonstration</span>
+    <span class="n">sample_data</span> <span class="o">=</span> <span class="n">generate_synthetic_data</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">embeddings</span><span class="p">,</span> <span class="n">script_path</span><span class="p">,</span> <span class="n">binary_path</span> <span class="o">=</span> <span class="n">train_and_save_model</span><span class="p">(</span>
+        <span class="n">sample_data</span><span class="p">,</span>
+        <span class="n">base_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="s2">&quot;validation_model&quot;</span><span class="p">),</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Load the model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+
+    <span class="c1"># This will pass validation (correct schema)</span>
+    <span class="n">correct_data</span> <span class="o">=</span> <span class="n">generate_synthetic_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">correct_data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Validation passed: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># This would fail validation (missing column)</span>
+    <span class="c1"># incorrect_data = correct_data.drop(columns=[&quot;Sales&quot;])</span>
+    <span class="c1"># embeddings = model.predict(incorrect_data)  # Would raise ValueError</span>
+
+    <span class="c1"># Skip validation if needed (not recommended for production)</span>
+    <span class="n">partial_data</span> <span class="o">=</span> <span class="n">correct_data</span><span class="p">[[</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span> <span class="s1">&#39;Product&#39;</span><span class="p">]]</span>  <span class="c1"># Missing columns</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">embeddings_unvalidated</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">partial_data</span><span class="p">,</span> <span class="n">validate_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️  Unvalidated prediction: </span><span class="si">{</span><span class="n">embeddings_unvalidated</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   (Schema validation was skipped)&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Even unvalidated prediction failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="best-practices-for-model-serialization">
+<h3>Best Practices for Model Serialization<a class="headerlink" href="#best-practices-for-model-serialization" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use descriptive base paths</strong>: Include version, date, or dataset info in model names</p></li>
+<li><p><strong>Enable training history</strong>: Keep detailed metadata for debugging and analysis</p></li>
+<li><p><strong>Validate schemas in production</strong>: Always use <code class="docutils literal notranslate"><span class="pre">validate_schema=True</span></code> for safety</p></li>
+<li><p><strong>Store models with data descriptions</strong>: Keep training data documentation alongside models</p></li>
+<li><p><strong>Version your models</strong>: Use systematic naming for model iterations</p></li>
+<li><p><strong>Test model loading</strong>: Always verify saved models can be loaded and used</p></li>
+</ol>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of production-ready model naming and metadata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="c1"># Create descriptive model path with timestamp and version</span>
+<span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;customer_segmentation_v2.1_</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Production model naming example:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Model name: </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Files would be: </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">.py and </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">.pkl&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Include metadata: dataset version, feature engineering steps, validation scores&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="custom-configuration-objects">
+<h2>Custom Configuration Objects<a class="headerlink" href="#custom-configuration-objects" title="Link to this heading">#</a></h2>
+<p>Use configuration objects for complex setups:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">EmbeddingConfig</span><span class="p">,</span>
+    <span class="n">NeuralConfig</span><span class="p">,</span>
+    <span class="n">ScalingConfig</span><span class="p">,</span>
+    <span class="n">LoggingConfig</span>
+<span class="p">)</span>
+
+<span class="c1"># Create comprehensive configuration</span>
+<span class="n">embedding_config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="n">neural_config</span> <span class="o">=</span> <span class="n">NeuralConfig</span><span class="p">(</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+    <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="o">=</span><span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>  <span class="c1"># Multi-layer</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span>
+<span class="p">)</span>
+
+<span class="n">scaling_config</span> <span class="o">=</span> <span class="n">ScalingConfig</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+    <span class="nb">range</span><span class="o">=</span><span class="kc">None</span>  <span class="c1"># Not applicable for standard scaling</span>
+<span class="p">)</span>
+
+<span class="n">logging_config</span> <span class="o">=</span> <span class="n">LoggingConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+    <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Configuration objects created:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Embedding: </span><span class="si">{</span><span class="n">embedding_config</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2">D </span><span class="si">{</span><span class="n">embedding_config</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Neural: </span><span class="si">{</span><span class="n">neural_config</span><span class="o">.</span><span class="n">max_epochs</span><span class="si">}</span><span class="s2"> epochs, </span><span class="si">{</span><span class="n">neural_config</span><span class="o">.</span><span class="n">hidden_units</span><span class="si">}</span><span class="s2"> units&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Scaling: </span><span class="si">{</span><span class="n">scaling_config</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Logging: </span><span class="si">{</span><span class="n">logging_config</span><span class="o">.</span><span class="n">level</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="performance-monitoring">
+<h2>Performance Monitoring<a class="headerlink" href="#performance-monitoring" title="Link to this heading">#</a></h2>
+<p>Built-in performance tracking:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># Enable performance logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">()</span>
+<span class="c1"># Logger is already configured with INFO level</span>
+
+<span class="c1"># Monitor embedding generation</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">embeddings_monitored</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Enable verbose output</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Performance summary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Total time: </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Records processed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Records per second: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">/</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final embeddings: </span><span class="si">{</span><span class="n">embeddings_monitored</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="production-considerations">
+<h2>Production Considerations<a class="headerlink" href="#production-considerations" title="Link to this heading">#</a></h2>
+<p>Key settings for production use:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production-optimized configuration</span>
+<span class="n">production_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>          <span class="c1"># Appropriate for dataset feature count</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>            <span class="c1"># Reduced for demo (100 in production)</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>            <span class="c1"># Appropriate for dataset size</span>
+    <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>         <span class="c1"># Conservative regularization</span>
+    <span class="n">hidden_units</span><span class="o">=</span><span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>  <span class="c1"># Deep architecture</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>      <span class="c1"># Prevent overfitting</span>
+    <span class="n">scale_method</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span>  <span class="c1"># Standardized outputs</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>                  <span class="c1"># Reproducible results</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Production embeddings generated:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Shape: </span><span class="si">{</span><span class="n">production_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Value range: [</span><span class="si">{</span><span class="n">production_embeddings</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">production_embeddings</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Mean: </span><span class="si">{</span><span class="n">production_embeddings</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Std: </span><span class="si">{</span><span class="n">production_embeddings</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>You now know Row2Vec’s advanced capabilities! For more:</p>
+<ul class="simple">
+<li><p>📖 <a class="reference internal" href="cli_guide.html"><span class="std std-doc">CLI Guide</span></a> - Batch processing and automation</p></li>
+<li><p>🔍 <a class="reference internal" href="api_reference.html"><span class="std std-doc">API Reference</span></a> - Complete parameter documentation</p></li>
+<li><p>🏠 Back to <a class="reference internal" href="housing_example.html"><span class="std std-doc">Examples</span></a> for practical applications</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="housing_example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Boston Housing Dataset Example</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cli_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Command-Line Interface Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-architecture-search-nas">Neural Architecture Search (NAS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-missing-value-imputation">Advanced Missing Value Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-encoding-strategies">Categorical Encoding Strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-layer-neural-networks">Multi-Layer Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-dimension-selection">Automatic Dimension Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastive-learning-mode">Contrastive Learning Mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-serialization-with-metadata">Model Serialization with Metadata</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-model-saving-with-rich-metadata">Advanced model saving with rich metadata:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-validation-in-production">Schema Validation in Production</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-model-serialization">Best Practices for Model Serialization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-configuration-objects">Custom Configuration Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-monitoring">Performance Monitoring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#production-considerations">Production Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

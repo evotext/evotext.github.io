@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/genindex.html" />
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.AdaptiveImputer">AdaptiveImputer (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.MissingPatternAnalyzer.analyze">analyze() (MissingPatternAnalyzer method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalAnalyzer.analyze_column">analyze_column() (CategoricalAnalyzer method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ArchitectureSearchConfig">ArchitectureSearchConfig (class in row2vec)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ArchitectureSearcher">ArchitectureSearcher (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.auto_detect_patterns">auto_detect_patterns (ImputationConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.auto_select_dimension">auto_select_dimension() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.AutoDimensionSelector">AutoDimensionSelector (class in row2vec)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.build_adaptive_pipeline">build_adaptive_pipeline() (in module row2vec)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.PipelineBuilder.build_preprocessing_pipeline">build_preprocessing_pipeline() (PipelineBuilder method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.categorical_fill_value">categorical_fill_value (ImputationConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.categorical_strategy">categorical_strategy (ImputationConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalAnalyzer">CategoricalAnalyzer (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncoder">CategoricalEncoder (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig">CategoricalEncodingConfig (class in row2vec)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ClassicalConfig">ClassicalConfig (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecTransformer.config_">config_ (Row2VecTransformer attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.correlation_threshold">correlation_threshold (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.create_dataframe_schema">create_dataframe_schema() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.custom_strategies">custom_strategies (CategoricalEncodingConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.embedding_dim_ratio">embedding_dim_ratio (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.EmbeddingConfig">EmbeddingConfig (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.enable_feature_selection">enable_feature_selection (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.encoding_strategy">encoding_strategy (CategoricalEncodingConfig attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.end_training">end_training() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.entity_batch_size">entity_batch_size (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.entity_epochs">entity_epochs (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.entity_threshold">entity_threshold (CategoricalEncodingConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.feature_importance_threshold">feature_importance_threshold (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecTransformer.feature_names_in_">feature_names_in_ (Row2VecTransformer attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.AdaptiveImputer.fit">fit() (AdaptiveImputer method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.CategoricalEncoder.fit">(CategoricalEncoder method)</a>
+</li>
+        <li><a href="api_reference.html#row2vec.Row2VecClassifier.fit">(Row2VecClassifier method)</a>
+</li>
+        <li><a href="api_reference.html#row2vec.Row2VecTransformer.fit">(Row2VecTransformer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.AdaptiveImputer.fit_transform">fit_transform() (AdaptiveImputer method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.Row2VecTransformer.fit_transform">(Row2VecTransformer method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference.html#row2vec.EmbeddingConfig.from_dict">from_dict() (EmbeddingConfig class method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.Row2VecModelMetadata.from_dict">(Row2VecModelMetadata class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference.html#row2vec.EmbeddingConfig.from_yaml">from_yaml() (EmbeddingConfig class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.generate_synthetic_data">generate_synthetic_data() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncoder.get_analysis_report">get_analysis_report() (CategoricalEncoder method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.PipelineBuilder.get_analysis_report">(PipelineBuilder method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncoder.get_feature_names_out">get_feature_names_out() (CategoricalEncoder method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.Row2VecTransformer.get_feature_names_out">(Row2VecTransformer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.AdaptiveImputer.get_imputation_report">get_imputation_report() (AdaptiveImputer method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.get_logger">get_logger() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.PipelineBuilder.get_pipeline_description">get_pipeline_description() (PipelineBuilder method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.handle_unknown">handle_unknown (CategoricalEncodingConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ImputationConfig">ImputationConfig (class in row2vec)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.knn_neighbors">knn_neighbors (ImputationConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.learn_embedding">learn_embedding() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.learn_embedding_classical">learn_embedding_classical() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.learn_embedding_target">learn_embedding_target() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.learn_embedding_unsupervised">learn_embedding_unsupervised() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.learn_embedding_v2">learn_embedding_v2() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.learn_embedding_with_model">learn_embedding_with_model() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.learn_embedding_with_model_v2">learn_embedding_with_model_v2() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.load_model">load_model() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_completion">log_completion() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_data_preprocessing">log_data_preprocessing() (Row2VecLogger method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_debug_info">log_debug_info() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_early_stopping">log_early_stopping() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_embedding_stats">log_embedding_stats() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_epoch_metrics">log_epoch_metrics() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_error">log_error() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_model_architecture">log_model_architecture() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_performance_warning">log_performance_warning() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_preprocessing_result">log_preprocessing_result() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.log_validation_issue">log_validation_issue() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.LoggingConfig">LoggingConfig (class in row2vec)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.max_embedding_dim">max_embedding_dim (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.min_embedding_dim">min_embedding_dim (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.missing_indicator_suffix">missing_indicator_suffix (ImputationConfig attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.missing_threshold">missing_threshold (ImputationConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.MissingPatternAnalyzer">MissingPatternAnalyzer (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecTransformer.model_">model_ (Row2VecTransformer attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.Row2VecTransformer.n_features_in_">n_features_in_ (Row2VecTransformer attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.NeuralConfig">NeuralConfig (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.numeric_strategy">numeric_strategy (ImputationConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.onehot_threshold">onehot_threshold (CategoricalEncodingConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.PipelineBuilder">PipelineBuilder (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecClassifier.predict">predict() (Row2VecClassifier method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.Row2VecModel.predict">(Row2VecModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference.html#row2vec.Row2VecClassifier.predict_proba">predict_proba() (Row2VecClassifier method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.prefer_speed">prefer_speed (CategoricalEncodingConfig attribute)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.ImputationConfig.prefer_speed">(ImputationConfig attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference.html#row2vec.PreprocessingConfig">PreprocessingConfig (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.preserve_interpretability">preserve_interpretability (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.preserve_missing_patterns">preserve_missing_patterns (ImputationConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.random_state">random_state (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecClassifier">Row2VecClassifier (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger">Row2VecLogger (class in row2vec)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.Row2VecModel">Row2VecModel (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecModelMetadata">Row2VecModelMetadata (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecTransformer">Row2VecTransformer (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.row_missing_threshold">row_missing_threshold (ImputationConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.save_model">save_model() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ScalingConfig">ScalingConfig (class in row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.ArchitectureSearcher.search">search() (ArchitectureSearcher method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.search_architecture">search_architecture() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.AutoDimensionSelector.select_dimension">select_dimension() (AutoDimensionSelector method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.start_epoch">start_epoch() (Row2VecLogger method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.Row2VecLogger.start_training">start_training() (Row2VecLogger method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.target_cv_folds">target_cv_folds (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.target_noise">target_noise (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.target_smoothing">target_smoothing (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.CategoricalEncodingConfig.target_threshold">target_threshold (CategoricalEncodingConfig attribute)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.EmbeddingConfig.to_dict">to_dict() (EmbeddingConfig method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.Row2VecModelMetadata.to_dict">(Row2VecModelMetadata method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.EmbeddingConfig.to_yaml">to_yaml() (EmbeddingConfig method)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.train_and_save_model">train_and_save_model() (in module row2vec)</a>
+</li>
+      <li><a href="api_reference.html#row2vec.AdaptiveImputer.transform">transform() (AdaptiveImputer method)</a>
+
+      <ul>
+        <li><a href="api_reference.html#row2vec.CategoricalEncoder.transform">(CategoricalEncoder method)</a>
+</li>
+        <li><a href="api_reference.html#row2vec.Row2VecTransformer.transform">(Row2VecTransformer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.validate_dataframe_schema">validate_dataframe_schema() (in module row2vec)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.Row2VecModel.validate_input_schema">validate_input_schema() (Row2VecModel method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#row2vec.ImputationConfig.warn_high_missingness">warn_high_missingness (ImputationConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>row2vec.architecture_search &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/row2vec/architecture_search';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/_modules/row2vec/architecture_search.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for row2vec.architecture_search</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Automatic Neural Architecture Search for Row2Vec embeddings.</span>
+
+<span class="sd">This module provides intelligent automatic architecture search to find optimal</span>
+<span class="sd">neural network configurations for embedding generation tasks.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding_v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">NeuralConfig</span>
+
+
+<div class="viewcode-block" id="ArchitectureSearchConfig">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.ArchitectureSearchConfig">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArchitectureSearchConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration for automatic neural architecture search.</span>
+
+<span class="sd">    This class defines the search space, evaluation criteria, and stopping</span>
+<span class="sd">    conditions for finding optimal neural network architectures.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Search strategy</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;random&quot;</span>  <span class="c1"># &quot;random&quot;, &quot;grid&quot; (future: &quot;bayesian&quot;, &quot;evolutionary&quot;)</span>
+
+    <span class="c1"># Search budget and stopping criteria</span>
+    <span class="n">max_trials</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
+    <span class="n">max_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1800</span>  <span class="c1"># 30 minutes default</span>
+    <span class="n">patience</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Stop if no improvement for N trials</span>
+    <span class="n">min_improvement</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># Minimum improvement threshold</span>
+
+    <span class="c1"># Search space definition</span>
+    <span class="n">layer_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># Min/max number of hidden layers</span>
+    <span class="n">max_layers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Maximum number of hidden layers</span>
+    <span class="n">width_options</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">])</span>
+    <span class="n">dropout_options</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">activation_options</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span> <span class="s2">&quot;elu&quot;</span><span class="p">,</span> <span class="s2">&quot;swish&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize derived parameters.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_layers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensure at least 1 layer</span>
+
+    <span class="c1"># Progressive training settings</span>
+    <span class="n">initial_epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Quick screening epochs</span>
+    <span class="n">intermediate_epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1"># Focused evaluation epochs</span>
+    <span class="n">final_epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Best candidates full training</span>
+    <span class="n">top_k_intermediate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># How many to evaluate with intermediate epochs</span>
+    <span class="n">top_k_final</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># How many to evaluate with full epochs</span>
+
+    <span class="c1"># Evaluation weights</span>
+    <span class="n">reconstruction_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.4</span>
+    <span class="n">clustering_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="n">efficiency_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="n">stability_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="c1"># Other settings</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">random_seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">return_full_history</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ArchitectureSearchResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Container for architecture search results.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">best_architecture</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">best_score</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">search_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">total_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">trials_completed</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="o">=</span> <span class="n">best_architecture</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">=</span> <span class="n">best_score</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_history</span> <span class="o">=</span> <span class="n">search_history</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">=</span> <span class="n">total_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trials_completed</span> <span class="o">=</span> <span class="n">trials_completed</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a summary of the search results.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;best_architecture&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span><span class="p">,</span>
+            <span class="s2">&quot;best_score&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span><span class="p">,</span>
+            <span class="s2">&quot;total_time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span><span class="p">,</span>
+            <span class="s2">&quot;trials_completed&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">trials_completed</span><span class="p">,</span>
+            <span class="s2">&quot;improvement_over_baseline&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_improvement</span><span class="p">(),</span>
+            <span class="s2">&quot;search_efficiency&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_time</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_improvement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute improvement over baseline architecture.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+
+        <span class="n">baseline_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">-</span> <span class="n">baseline_score</span><span class="p">)</span> <span class="o">/</span> <span class="n">baseline_score</span>
+            <span class="k">if</span> <span class="n">baseline_score</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="p">)</span>
+
+
+<div class="viewcode-block" id="ArchitectureSearcher">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.ArchitectureSearcher">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArchitectureSearcher</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main class for performing neural architecture search.</span>
+
+<span class="sd">    Implements multiple search strategies to find optimal neural network</span>
+<span class="sd">    architectures for embedding generation tasks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ArchitectureSearchConfig</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trials_without_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">random_seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">random_seed</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">random_seed</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ArchitectureSearcher.search">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.ArchitectureSearcher.search">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">base_config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArchitectureSearchResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform architecture search on the given dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df: Input dataframe for embedding generation</span>
+<span class="sd">            base_config: Base embedding configuration</span>
+<span class="sd">            target_column: Optional target column for supervised evaluation</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ArchitectureSearchResult containing the best architecture and metadata</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_random_search</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">base_config</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;grid&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_grid_search</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">base_config</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown search method: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="k">return</span> <span class="n">ArchitectureSearchResult</span><span class="p">(</span>
+                <span class="n">best_architecture</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="ow">or</span> <span class="p">{},</span>
+                <span class="n">best_score</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">best_score</span><span class="p">,</span>
+                <span class="n">search_history</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">return_full_history</span>
+                <span class="k">else</span> <span class="p">[],</span>
+                <span class="n">total_time</span><span class="o">=</span><span class="n">total_time</span><span class="p">,</span>
+                <span class="n">trials_completed</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">),</span>
+            <span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">raise</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_random_search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">base_config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArchitectureSearchResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform random search over the architecture space.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_trials</span><span class="p">):</span>
+            <span class="c1"># Check stopping criteria</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_stop</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()):</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Sample random architecture</span>
+            <span class="n">architecture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_random_architecture</span><span class="p">()</span>
+
+            <span class="c1"># Evaluate architecture</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_architecture</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="n">base_config</span><span class="p">,</span> <span class="n">architecture</span><span class="p">,</span> <span class="n">target_column</span><span class="p">,</span> <span class="n">trial</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Update best</span>
+            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="o">=</span> <span class="n">architecture</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trials_without_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trials_without_improvement</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">ArchitectureSearchResult</span><span class="p">(</span>
+            <span class="n">best_architecture</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="n">best_score</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">best_score</span><span class="p">,</span>
+            <span class="n">search_history</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">,</span>
+            <span class="n">total_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># Will be set by caller</span>
+            <span class="n">trials_completed</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_grid_search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">base_config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArchitectureSearchResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform grid search over the architecture space.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Generate all combinations</span>
+        <span class="n">architectures</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_grid_architectures</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">for</span> <span class="n">trial</span><span class="p">,</span> <span class="n">architecture</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">architectures</span><span class="p">):</span>
+            <span class="c1"># Check stopping criteria</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_stop</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span> <span class="ow">or</span> <span class="n">trial</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_trials</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Evaluate architecture</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_architecture</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="n">base_config</span><span class="p">,</span> <span class="n">architecture</span><span class="p">,</span> <span class="n">target_column</span><span class="p">,</span> <span class="n">trial</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Update best</span>
+            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="o">=</span> <span class="n">architecture</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">ArchitectureSearchResult</span><span class="p">(</span>
+            <span class="n">best_architecture</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">best_architecture</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="n">best_score</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">best_score</span><span class="p">,</span>
+            <span class="n">search_history</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">,</span>
+            <span class="n">total_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># Will be set by caller</span>
+            <span class="n">trials_completed</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sample_random_architecture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sample a random architecture from the search space.&quot;&quot;&quot;</span>
+        <span class="c1"># Now supports multi-layer architectures</span>
+        <span class="n">n_layers</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_layers</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">n_layers</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># Single layer: keep as int for backward compatibility</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">width_options</span><span class="p">)</span>
+            <span class="n">hidden_units</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Multi-layer: use list of layer widths</span>
+            <span class="n">layer_widths</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">):</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">width_options</span><span class="p">)</span>
+                <span class="n">layer_widths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
+            <span class="n">hidden_units</span> <span class="o">=</span> <span class="n">layer_widths</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;n_layers&quot;</span><span class="p">:</span> <span class="n">n_layers</span><span class="p">,</span>
+            <span class="s2">&quot;hidden_units&quot;</span><span class="p">:</span> <span class="n">hidden_units</span><span class="p">,</span>  <span class="c1"># Now supports both int and List[int]</span>
+            <span class="s2">&quot;dropout_rate&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dropout_options</span><span class="p">),</span>
+            <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">activation_options</span><span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_grid_architectures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate all architectures for grid search.&quot;&quot;&quot;</span>
+        <span class="n">architectures</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Grid over number of layers, widths, dropout, and activation</span>
+        <span class="k">for</span> <span class="n">n_layers</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_layers</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="p">):</span>  <span class="c1"># Limit to 2 layers for grid efficiency</span>
+            <span class="k">for</span> <span class="n">width</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">width_options</span><span class="p">[</span>
+                <span class="p">::</span><span class="mi">2</span>
+            <span class="p">]:</span>  <span class="c1"># Use every other width for efficiency</span>
+                <span class="k">for</span> <span class="n">dropout</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dropout_options</span><span class="p">[</span>
+                    <span class="p">::</span><span class="mi">2</span>
+                <span class="p">]:</span>  <span class="c1"># Use every other dropout</span>
+                    <span class="k">for</span> <span class="n">activation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">activation_options</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">n_layers</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">hidden_units</span> <span class="o">=</span> <span class="n">width</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="c1"># For multi-layer, create decreasing layer sizes</span>
+                            <span class="n">hidden_units</span> <span class="o">=</span> <span class="p">[</span><span class="n">width</span> <span class="o">//</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)]</span>
+                            <span class="n">hidden_units</span> <span class="o">=</span> <span class="p">[</span>
+                                <span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hidden_units</span>
+                            <span class="p">]</span>  <span class="c1"># Ensure minimum size</span>
+
+                        <span class="n">architectures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;n_layers&quot;</span><span class="p">:</span> <span class="n">n_layers</span><span class="p">,</span>
+                                <span class="s2">&quot;hidden_units&quot;</span><span class="p">:</span> <span class="n">hidden_units</span><span class="p">,</span>
+                                <span class="s2">&quot;dropout_rate&quot;</span><span class="p">:</span> <span class="n">dropout</span><span class="p">,</span>
+                                <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">activation</span><span class="p">,</span>
+                            <span class="p">}</span>
+                        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">architectures</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_trials</span><span class="p">]</span>  <span class="c1"># Limit grid size</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_width_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate sensible width configurations for a given number of layers.&quot;&quot;&quot;</span>
+        <span class="n">configs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Common patterns</span>
+        <span class="k">if</span> <span class="n">n_layers</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">configs</span><span class="o">.</span><span class="n">extend</span><span class="p">([[</span><span class="n">w</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">]])</span>
+        <span class="k">elif</span> <span class="n">n_layers</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">configs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">n_layers</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">configs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">n_layers</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">configs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">configs</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_evaluate_architecture</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">base_config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">architecture</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">trial_num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate a single architecture configuration.&quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Determine training epochs based on progressive training strategy</span>
+            <span class="n">epochs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_epochs_for_trial</span><span class="p">(</span><span class="n">trial_num</span><span class="p">)</span>
+
+            <span class="c1"># Adjust batch size based on dataset size</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># Reasonable batch size</span>
+
+            <span class="c1"># Create neural config from architecture (simplified for current Row2Vec)</span>
+            <span class="n">neural_config</span> <span class="o">=</span> <span class="n">NeuralConfig</span><span class="p">(</span>
+                <span class="n">hidden_units</span><span class="o">=</span><span class="n">architecture</span><span class="p">[</span><span class="s2">&quot;hidden_units&quot;</span><span class="p">],</span>  <span class="c1"># Single integer value</span>
+                <span class="n">dropout_rate</span><span class="o">=</span><span class="n">architecture</span><span class="p">[</span><span class="s2">&quot;dropout_rate&quot;</span><span class="p">],</span>
+                <span class="n">activation</span><span class="o">=</span><span class="n">architecture</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">],</span>
+                <span class="n">max_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Create embedding config with the same mode as base_config</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+                <span class="n">mode</span><span class="o">=</span><span class="n">base_config</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+                <span class="n">embedding_dim</span><span class="o">=</span><span class="n">base_config</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">,</span>
+                <span class="n">neural</span><span class="o">=</span><span class="n">neural_config</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Generate embeddings</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+            <span class="n">training_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+            <span class="c1"># Compute evaluation metrics</span>
+            <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_evaluation_metrics</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">training_time</span><span class="p">,</span> <span class="n">target_column</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Compute weighted score</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">reconstruction_weight</span> <span class="o">*</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;reconstruction_score&quot;</span><span class="p">]</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">clustering_weight</span> <span class="o">*</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;clustering_score&quot;</span><span class="p">]</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">efficiency_weight</span> <span class="o">*</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;efficiency_score&quot;</span><span class="p">]</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">stability_weight</span> <span class="o">*</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;stability_score&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Record trial</span>
+            <span class="n">trial_record</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;trial&quot;</span><span class="p">:</span> <span class="n">trial_num</span><span class="p">,</span>
+                <span class="s2">&quot;architecture&quot;</span><span class="p">:</span> <span class="n">architecture</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">,</span>
+                <span class="s2">&quot;training_time&quot;</span><span class="p">:</span> <span class="n">training_time</span><span class="p">,</span>
+                <span class="s2">&quot;epochs_used&quot;</span><span class="p">:</span> <span class="n">epochs</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trial_record</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">and</span> <span class="n">trial_num</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="k">return</span> <span class="n">score</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="c1"># Record failed trial</span>
+            <span class="n">trial_record</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;trial&quot;</span><span class="p">:</span> <span class="n">trial_num</span><span class="p">,</span>
+                <span class="s2">&quot;architecture&quot;</span><span class="p">:</span> <span class="n">architecture</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s2">&quot;training_time&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;epochs_used&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+            <span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">search_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trial_record</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_epochs_for_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial_num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine number of epochs based on progressive training strategy.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">trial_num</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_trials</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">top_k_final</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">trial_num</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_trials</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">top_k_intermediate</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">initial_epochs</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">intermediate_epochs</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">final_epochs</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_evaluation_metrics</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">embeddings</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">training_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute comprehensive evaluation metrics for embeddings.&quot;&quot;&quot;</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># 1. Reconstruction score (inverse of reconstruction error)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Use variance preservation as a proxy for reconstruction quality</span>
+            <span class="n">original_var</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">embedding_var</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">reconstruction_score</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">embedding_var</span> <span class="o">/</span> <span class="n">original_var</span><span class="p">)</span> <span class="k">if</span> <span class="n">original_var</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.5</span>
+            <span class="p">)</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;reconstruction_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstruction_score</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;reconstruction_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+        <span class="c1"># 2. Clustering quality score</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>  <span class="c1"># Need enough samples for clustering</span>
+                <span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span> <span class="o">//</span> <span class="mi">20</span><span class="p">))</span>
+                <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1305</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">silhouette</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">)</span>
+                    <span class="n">clustering_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">silhouette</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Normalize to [0, 1]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">clustering_score</span> <span class="o">=</span> <span class="mf">0.5</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">clustering_score</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;clustering_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clustering_score</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;clustering_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+        <span class="c1"># 3. Efficiency score (inverse of training time, normalized)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Normalize by dataset size and dimensionality</span>
+            <span class="n">time_per_sample</span> <span class="o">=</span> <span class="n">training_time</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">training_time</span>
+            <span class="n">efficiency_score</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">time_per_sample</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Scale factor</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;efficiency_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">efficiency_score</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;efficiency_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+        <span class="c1"># 4. Stability score (based on embedding variance and outliers)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Check for numerical stability</span>
+            <span class="n">has_nan</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+            <span class="n">has_inf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">embeddings</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">has_nan</span> <span class="ow">or</span> <span class="n">has_inf</span><span class="p">:</span>
+                <span class="n">stability_score</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Check for reasonable value ranges</span>
+                <span class="n">max_abs_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">embeddings</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">max_abs_value</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>  <span class="c1"># Very large values indicate instability</span>
+                    <span class="n">stability_score</span> <span class="o">=</span> <span class="mf">0.1</span>
+                <span class="k">elif</span> <span class="n">max_abs_value</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+                    <span class="n">stability_score</span> <span class="o">=</span> <span class="mf">0.5</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">stability_score</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;stability_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stability_score</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;stability_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+        <span class="k">return</span> <span class="n">metrics</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_should_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if search should be stopped based on stopping criteria.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Check patience</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trials_without_improvement</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">patience</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># Check time limit</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_time</span> <span class="ow">and</span> <span class="p">(</span><span class="n">current_time</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_describe_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a human-readable description of the search space.&quot;&quot;&quot;</span>
+        <span class="n">layer_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">layer_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">layer_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">width_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">width_options</span><span class="p">)</span>
+        <span class="n">dropout_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dropout_options</span><span class="p">)</span>
+        <span class="n">activation_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">activation_options</span><span class="p">)</span>
+
+        <span class="n">total_combinations</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">layer_count</span> <span class="o">*</span> <span class="p">(</span><span class="n">width_count</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">dropout_count</span> <span class="o">*</span> <span class="n">activation_count</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">layer_count</span><span class="si">}</span><span class="s2"> layer configs × </span><span class="si">{</span><span class="n">width_count</span><span class="si">}</span><span class="s2"> width options × &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dropout_count</span><span class="si">}</span><span class="s2"> dropout rates × </span><span class="si">{</span><span class="n">activation_count</span><span class="si">}</span><span class="s2"> activations &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;≈ </span><span class="si">{</span><span class="n">total_combinations</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> total combinations&quot;</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="search_architecture">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.search_architecture">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">search_architecture</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">base_config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+    <span class="n">search_config</span><span class="p">:</span> <span class="n">ArchitectureSearchConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ArchitectureSearchResult</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform automatic neural architecture search.</span>
+
+<span class="sd">    This is the main entry point for architecture search functionality.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: Input dataframe for embedding generation</span>
+<span class="sd">        base_config: Base embedding configuration</span>
+<span class="sd">        search_config: Architecture search configuration (uses defaults if None)</span>
+<span class="sd">        target_column: Optional target column for supervised evaluation</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of (best_architecture_dict, full_search_result)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">search_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">search_config</span> <span class="o">=</span> <span class="n">ArchitectureSearchConfig</span><span class="p">()</span>
+
+    <span class="n">searcher</span> <span class="o">=</span> <span class="n">ArchitectureSearcher</span><span class="p">(</span><span class="n">search_config</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">base_config</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">best_architecture</span><span class="p">,</span> <span class="n">result</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

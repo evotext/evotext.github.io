@@ -1,0 +1,657 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Changelog &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'changelog';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/changelog.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="API Reference" href="api_reference.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/changelog.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelog</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-1-0-current-development">Version 0.1.0 (Current Development)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">🚀 New Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features">🧠 Advanced Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-improvements">🔧 Technical Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-handling">📊 Data Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">🏗️ Architecture</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planned-releases">Planned Releases</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-2-0-target-q2-2025">Version 0.2.0 (Target: Q2 2025)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-3-0-target-q3-2025">Version 0.3.0 (Target: Q3 2025)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-0-0-target-q4-2025">Version 1.0.0 (Target: Q4 2025)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-history">Development History</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-release-development">Pre-release Development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-changes">Breaking Changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspiration">Inspiration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<section id="version-0-1-0-current-development">
+<h2>Version 0.1.0 (Current Development)<a class="headerlink" href="#version-0-1-0-current-development" title="Link to this heading">#</a></h2>
+<section id="new-features">
+<h3>🚀 New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Core Embedding Engine</strong>: Complete implementation of <code class="docutils literal notranslate"><span class="pre">learn_embedding()</span></code> function</p></li>
+<li><p><strong>Five Embedding Modes</strong>: Neural (unsupervised), target-based, PCA, t-SNE, and UMAP</p></li>
+<li><p><strong>Intelligent Preprocessing</strong>: Automatic missing value imputation and categorical encoding</p></li>
+<li><p><strong>Neural Architecture Search</strong>: Automated optimal architecture discovery</p></li>
+<li><p><strong>Model Serialization</strong>: Save/load trained models with metadata</p></li>
+<li><p><strong>Comprehensive CLI</strong>: Three-command system for different workflows</p></li>
+<li><p><strong>sklearn Integration</strong>: Transformer and classifier interfaces</p></li>
+<li><p><strong>pandas Integration</strong>: DataFrame accessor methods</p></li>
+</ul>
+</section>
+<section id="advanced-features">
+<h3>🧠 Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Multi-layer Networks</strong>: Support for deep architectures with 1-4+ hidden layers</p></li>
+<li><p><strong>Adaptive Imputation</strong>: Multiple strategies for missing value handling</p></li>
+<li><p><strong>Categorical Encoding</strong>: OneHot, target encoding, entity embeddings</p></li>
+<li><p><strong>Auto Dimension Selection</strong>: Find optimal embedding dimensions</p></li>
+<li><p><strong>Contrastive Learning</strong>: Advanced embedding technique</p></li>
+<li><p><strong>Configuration Objects</strong>: Type-safe configuration management</p></li>
+</ul>
+</section>
+<section id="technical-improvements">
+<h3>🔧 Technical Improvements<a class="headerlink" href="#technical-improvements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Modern Build System</strong>: pyproject.toml with hatchling backend</p></li>
+<li><p><strong>Type Safety</strong>: Complete MyPy annotations</p></li>
+<li><p><strong>Comprehensive Testing</strong>: 111 tests with 92% coverage</p></li>
+<li><p><strong>Code Quality</strong>: ruff linting and formatting</p></li>
+<li><p><strong>Documentation</strong>: Jupyter Book-based executable documentation</p></li>
+<li><p><strong>Performance Monitoring</strong>: Built-in timing and memory tracking</p></li>
+</ul>
+</section>
+<section id="data-handling">
+<h3>📊 Data Handling<a class="headerlink" href="#data-handling" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Multiple Formats</strong>: CSV, Parquet, Excel, JSON, TSV support</p></li>
+<li><p><strong>Large Dataset Support</strong>: Sampling and batch processing</p></li>
+<li><p><strong>Schema Validation</strong>: Input data validation for models</p></li>
+<li><p><strong>Scaling Options</strong>: MinMax, standard, robust, L2 scaling</p></li>
+<li><p><strong>Error Handling</strong>: Comprehensive validation and error messages</p></li>
+</ul>
+</section>
+<section id="architecture">
+<h3>🏗️ Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Modular Design</strong>: Clear separation of concerns</p></li>
+<li><p><strong>Plugin System</strong>: Optional dependencies (UMAP, CLI tools)</p></li>
+<li><p><strong>Pipeline Builder</strong>: Flexible preprocessing pipeline construction</p></li>
+<li><p><strong>Extensible</strong>: Easy to add new embedding methods</p></li>
+</ul>
+</section>
+</section>
+<section id="planned-releases">
+<h2>Planned Releases<a class="headerlink" href="#planned-releases" title="Link to this heading">#</a></h2>
+<section id="version-0-2-0-target-q2-2025">
+<h3>Version 0.2.0 (Target: Q2 2025)<a class="headerlink" href="#version-0-2-0-target-q2-2025" title="Link to this heading">#</a></h3>
+<p><strong>Planned Features:</strong></p>
+<ul class="simple">
+<li><p>Multi-task learning mode</p></li>
+<li><p>Temporal embedding support</p></li>
+<li><p>Visualization module (<code class="docutils literal notranslate"><span class="pre">row2vec.viz</span></code>)</p></li>
+<li><p>Interactive documentation with Binder</p></li>
+<li><p>Performance benchmarks</p></li>
+</ul>
+</section>
+<section id="version-0-3-0-target-q3-2025">
+<h3>Version 0.3.0 (Target: Q3 2025)<a class="headerlink" href="#version-0-3-0-target-q3-2025" title="Link to this heading">#</a></h3>
+<p><strong>Planned Features:</strong></p>
+<ul class="simple">
+<li><p>Variational autoencoders (VAE)</p></li>
+<li><p>Transformer-based architectures</p></li>
+<li><p>Graph neural network support</p></li>
+<li><p>Federated learning capabilities</p></li>
+<li><p>Advanced visualization tools</p></li>
+</ul>
+</section>
+<section id="version-1-0-0-target-q4-2025">
+<h3>Version 1.0.0 (Target: Q4 2025)<a class="headerlink" href="#version-1-0-0-target-q4-2025" title="Link to this heading">#</a></h3>
+<p><strong>Production Release:</strong></p>
+<ul class="simple">
+<li><p>Full API stability guarantee</p></li>
+<li><p>Comprehensive performance optimization</p></li>
+<li><p>Enterprise features</p></li>
+<li><p>Professional support documentation</p></li>
+</ul>
+</section>
+</section>
+<section id="development-history">
+<h2>Development History<a class="headerlink" href="#development-history" title="Link to this heading">#</a></h2>
+<section id="pre-release-development">
+<h3>Pre-release Development<a class="headerlink" href="#pre-release-development" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Core Implementation</strong>: Main embedding functionality with neural networks</p></li>
+<li><p><strong>Advanced Features</strong>: Neural Architecture Search, imputation, serialization</p></li>
+<li><p><strong>Documentation</strong>: Comprehensive Jupyter Book documentation</p></li>
+<li><p><strong>Production Readiness</strong>: Testing, CI/CD, packaging</p></li>
+</ul>
+</section>
+</section>
+<section id="breaking-changes">
+<h2>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Link to this heading">#</a></h2>
+<p>Future breaking changes will be minimized and clearly documented with advance notice.</p>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Link to this heading">#</a></h2>
+<section id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Tiago Tresoldi</strong> - Creator and primary maintainer</p></li>
+<li><p><strong>Community Contributors</strong> - Bug reports, feature requests, and feedback</p></li>
+</ul>
+</section>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h3>
+<p>Row2Vec builds on excellent open-source libraries:</p>
+<ul class="simple">
+<li><p><strong>TensorFlow/Keras</strong> - Neural network backend</p></li>
+<li><p><strong>scikit-learn</strong> - Preprocessing and classical ML methods</p></li>
+<li><p><strong>pandas</strong> - Data manipulation</p></li>
+<li><p><strong>NumPy</strong> - Numerical computing</p></li>
+</ul>
+</section>
+<section id="inspiration">
+<h3>Inspiration<a class="headerlink" href="#inspiration" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Word2Vec</strong> - Original embedding concept</p></li>
+<li><p><strong>Node2Vec</strong> - Graph-based embeddings</p></li>
+<li><p><strong>FastText</strong> - Subword embeddings</p></li>
+<li><p><strong>t-SNE/UMAP</strong> - Dimensionality reduction techniques</p></li>
+</ul>
+</section>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
+<p>Row2Vec is released under the MIT License. See LICENSE file for details.</p>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>📖 <a class="reference internal" href="intro.html"><span class="std std-doc">Documentation</span></a></p></li>
+<li><p>🐛 <a class="reference external" href="https://github.com/evotext/row2vec/issues">Issue Tracker</a></p></li>
+<li><p>💬 <a class="reference external" href="https://github.com/evotext/row2vec/discussions">Discussions</a></p></li>
+<li><p>📧 Email: <a class="reference external" href="mailto:tiago&#37;&#52;&#48;tresoldi&#46;org">tiago<span>&#64;</span>tresoldi<span>&#46;</span>org</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><em>This changelog follows <a class="reference external" href="https://keepachangelog.com/">Keep a Changelog</a> format.</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="api_reference.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-1-0-current-development">Version 0.1.0 (Current Development)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">🚀 New Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-features">🧠 Advanced Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-improvements">🔧 Technical Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-handling">📊 Data Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">🏗️ Architecture</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planned-releases">Planned Releases</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-2-0-target-q2-2025">Version 0.2.0 (Target: Q2 2025)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-3-0-target-q3-2025">Version 0.3.0 (Target: Q3 2025)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-0-0-target-q4-2025">Version 1.0.0 (Target: Q4 2025)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-history">Development History</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-release-development">Pre-release Development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-changes">Breaking Changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspiration">Inspiration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

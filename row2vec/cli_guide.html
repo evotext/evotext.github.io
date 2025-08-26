@@ -1,0 +1,1113 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Command-Line Interface Guide &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cli_guide';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/cli_guide.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Theoretical Foundation" href="theoretical_foundation.html" />
+    <link rel="prev" title="Advanced Features" href="advanced_features.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/cli_guide.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Command-Line Interface Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-commands-overview">CLI Commands Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage-examples">Basic Usage Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-embeddings">Quick Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-different-modes">Working with Different Modes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">Advanced Configuration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-configuration-files">Using Configuration Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-dataset-processing">Large Dataset Processing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-model-management">Training and Model Management</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-models">Train Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-trained-models">Apply Trained Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-format-support">File Format Support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-workflow-examples">Real-World Workflow Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-science-pipeline">Data Science Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-analytics">Customer Analytics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-testing-setup">A/B Testing Setup</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-debugging">Monitoring and Debugging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verbose-output">Verbose Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-monitoring">Performance Monitoring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-examples">Integration Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-scripting">Shell Scripting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-integration">Python Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-usage">Docker Usage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-tips">Performance Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-strategies">Optimization Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-management">Memory Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">Common Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-reference">Configuration Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-workflows">Advanced Workflows</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-ml-pipeline">Complete ML Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-deployment">Production Deployment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-validation">Schema Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Performance Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Common Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-mode">Debug Mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="command-line-interface-guide">
+<h1>Command-Line Interface Guide<a class="headerlink" href="#command-line-interface-guide" title="Link to this heading">#</a></h1>
+<p>Row2Vec provides a comprehensive CLI for batch processing and production workflows.</p>
+<section id="cli-commands-overview">
+<h2>CLI Commands Overview<a class="headerlink" href="#cli-commands-overview" title="Link to this heading">#</a></h2>
+<p>Row2Vec offers three main commands:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">row2vec</span></code></strong> - Direct embedding generation (most common)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">row2vec-train</span></code></strong> - Train and save models</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">row2vec-embed</span></code></strong> - Apply saved models to new data</p></li>
+</ol>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>The CLI is included with Row2Vec:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>row2vec<span class="o">[</span>cli<span class="o">]</span><span class="w">  </span><span class="c1"># Include CLI dependencies</span>
+</pre></div>
+</div>
+<p>Or install CLI dependencies manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>click<span class="w"> </span>rich<span class="w"> </span>pyyaml
+</pre></div>
+</div>
+</section>
+<section id="basic-usage-examples">
+<h2>Basic Usage Examples<a class="headerlink" href="#basic-usage-examples" title="Link to this heading">#</a></h2>
+<section id="quick-embeddings">
+<h3>Quick Embeddings<a class="headerlink" href="#quick-embeddings" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple 2D embeddings</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># With specific dimensions</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">10</span><span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Target-based embeddings</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--target-column<span class="w"> </span>category<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="working-with-different-modes">
+<h3>Working with Different Modes<a class="headerlink" href="#working-with-different-modes" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Neural network (default)</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--mode<span class="w"> </span>unsupervised<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">5</span><span class="w"> </span>--output<span class="w"> </span>neural_emb.csv
+
+<span class="c1"># PCA for fast linear reduction</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--mode<span class="w"> </span>pca<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">5</span><span class="w"> </span>--output<span class="w"> </span>pca_emb.csv
+
+<span class="c1"># t-SNE for visualization</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--mode<span class="w"> </span>tsne<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">2</span><span class="w"> </span>--output<span class="w"> </span>tsne_emb.csv
+
+<span class="c1"># UMAP for general purpose</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--mode<span class="w"> </span>umap<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">3</span><span class="w"> </span>--output<span class="w"> </span>umap_emb.csv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-configuration">
+<h2>Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading">#</a></h2>
+<section id="using-configuration-files">
+<h3>Using Configuration Files<a class="headerlink" href="#using-configuration-files" title="Link to this heading">#</a></h3>
+<p>Create a YAML configuration file for complex setups:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># config.yaml</span>
+<span class="nt">neural</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">max_epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128</span>
+<span class="w">  </span><span class="nt">dropout_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+<span class="w">  </span><span class="nt">hidden_units</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">256</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">early_stopping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">preprocessing</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">categorical_encoding_strategy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adaptive&quot;</span>
+<span class="w">  </span><span class="nt">numeric_scaling</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;standard&quot;</span>
+<span class="w">  </span><span class="nt">handle_missing</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;median&quot;</span>
+
+<span class="nt">scaling</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;minmax&quot;</span>
+<span class="w">  </span><span class="nt">feature_range</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+
+<span class="nt">logging</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;INFO&quot;</span>
+<span class="w">  </span><span class="nt">enable_performance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>Use the configuration:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>row2vec<span class="w"> </span>data.csv<span class="w"> </span>--config<span class="w"> </span>config.yaml<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="large-dataset-processing">
+<h3>Large Dataset Processing<a class="headerlink" href="#large-dataset-processing" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample large datasets</span>
+row2vec<span class="w"> </span>huge_data.csv<span class="w"> </span>--sample-size<span class="w"> </span><span class="m">10000</span><span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Batch processing with specific settings</span>
+row2vec<span class="w"> </span>big_data.parquet<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch-size<span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">50000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.parquet
+</pre></div>
+</div>
+</section>
+</section>
+<section id="training-and-model-management">
+<h2>Training and Model Management<a class="headerlink" href="#training-and-model-management" title="Link to this heading">#</a></h2>
+<section id="train-models">
+<h3>Train Models<a class="headerlink" href="#train-models" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic model training</span>
+row2vec-train<span class="w"> </span>data.csv<span class="w"> </span>--output<span class="w"> </span>model.pkl
+
+<span class="c1"># Advanced training</span>
+row2vec-train<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mode<span class="w"> </span>unsupervised<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-epochs<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch-size<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--validation-split<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--save-embeddings<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>production_model.pkl
+</pre></div>
+</div>
+</section>
+<section id="apply-trained-models">
+<h3>Apply Trained Models<a class="headerlink" href="#apply-trained-models" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic inference</span>
+row2vec-embed<span class="w"> </span>new_data.csv<span class="w"> </span>--model<span class="w"> </span>model.py<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># With validation</span>
+row2vec-embed<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>trained_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--strict-validation<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.parquet
+</pre></div>
+</div>
+</section>
+</section>
+<section id="file-format-support">
+<h2>File Format Support<a class="headerlink" href="#file-format-support" title="Link to this heading">#</a></h2>
+<p>Row2Vec CLI supports multiple formats:</p>
+<p><strong>Input formats:</strong></p>
+<ul class="simple">
+<li><p>CSV (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>)</p></li>
+<li><p>Parquet (<code class="docutils literal notranslate"><span class="pre">.parquet</span></code>)</p></li>
+<li><p>Excel (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.xls</span></code>)</p></li>
+<li><p>JSON (<code class="docutils literal notranslate"><span class="pre">.json</span></code>)</p></li>
+<li><p>TSV (<code class="docutils literal notranslate"><span class="pre">.tsv</span></code>)</p></li>
+</ul>
+<p><strong>Output formats:</strong></p>
+<ul class="simple">
+<li><p>CSV (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>) - Default, widely compatible</p></li>
+<li><p>Parquet (<code class="docutils literal notranslate"><span class="pre">.parquet</span></code>) - Recommended for large datasets</p></li>
+<li><p>Excel (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>) - For reports and analysis</p></li>
+<li><p>JSON (<code class="docutils literal notranslate"><span class="pre">.json</span></code>) - For APIs and web services</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Different format examples</span>
+row2vec<span class="w"> </span>data.parquet<span class="w"> </span>--output<span class="w"> </span>embeddings.parquet<span class="w">  </span><span class="c1"># Parquet to Parquet</span>
+row2vec<span class="w"> </span>data.xlsx<span class="w"> </span>--output<span class="w"> </span>embeddings.csv<span class="w">         </span><span class="c1"># Excel to CSV</span>
+row2vec<span class="w"> </span>data.json<span class="w"> </span>--output<span class="w"> </span>embeddings.json<span class="w">        </span><span class="c1"># JSON to JSON</span>
+</pre></div>
+</div>
+</section>
+<section id="real-world-workflow-examples">
+<h2>Real-World Workflow Examples<a class="headerlink" href="#real-world-workflow-examples" title="Link to this heading">#</a></h2>
+<section id="data-science-pipeline">
+<h3>Data Science Pipeline<a class="headerlink" href="#data-science-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Explore with quick embeddings</span>
+row2vec<span class="w"> </span>exploration_data.csv<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">2</span><span class="w"> </span>--mode<span class="w"> </span>tsne<span class="w"> </span>--output<span class="w"> </span>explore.csv
+
+<span class="c1"># 2. Train production model</span>
+row2vec-train<span class="w"> </span>clean_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-epochs<span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--validation-split<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--save-embeddings<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>production_model.pkl
+
+<span class="c1"># 3. Apply to new data</span>
+row2vec-embed<span class="w"> </span>daily_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>production_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--validate-schema<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>daily_embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="customer-analytics">
+<h3>Customer Analytics<a class="headerlink" href="#customer-analytics" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Customer segmentation embeddings</span>
+row2vec<span class="w"> </span>customer_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mode<span class="w"> </span>unsupervised<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--categorical-strategy<span class="w"> </span>adaptive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--numeric-scaling<span class="w"> </span>robust<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>customer_segments.csv
+
+<span class="c1"># Category analysis</span>
+row2vec<span class="w"> </span>customer_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mode<span class="w"> </span>target<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-column<span class="w"> </span>customer_type<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>customer_types.csv
+</pre></div>
+</div>
+</section>
+<section id="a-b-testing-setup">
+<h3>A/B Testing Setup<a class="headerlink" href="#a-b-testing-setup" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train baseline model</span>
+row2vec-train<span class="w"> </span>historical_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span>baseline_config.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>baseline_model.pkl
+
+<span class="c1"># Generate embeddings for test groups</span>
+row2vec-embed<span class="w"> </span>test_group_a.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>baseline_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>test_a_embeddings.csv
+
+row2vec-embed<span class="w"> </span>test_group_b.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>baseline_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>test_b_embeddings.csv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="monitoring-and-debugging">
+<h2>Monitoring and Debugging<a class="headerlink" href="#monitoring-and-debugging" title="Link to this heading">#</a></h2>
+<section id="verbose-output">
+<h3>Verbose Output<a class="headerlink" href="#verbose-output" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable detailed logging</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--verbose<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Custom log levels and files</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--log-level<span class="w"> </span>DEBUG<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--log-file<span class="w"> </span>training.log<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="performance-monitoring">
+<h3>Performance Monitoring<a class="headerlink" href="#performance-monitoring" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time execution</span>
+<span class="nb">time</span><span class="w"> </span>row2vec<span class="w"> </span>large_data.csv<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Monitor memory usage</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--log-level<span class="w"> </span>INFO<span class="w"> </span>--output<span class="w"> </span>embeddings.csv<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>memory
+</pre></div>
+</div>
+</section>
+<section id="error-handling">
+<h3>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Relaxed validation for messy data</span>
+row2vec-embed<span class="w"> </span>messy_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-strict-validation<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Skip problematic rows (if implemented)</span>
+row2vec<span class="w"> </span>problematic_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--handle-errors<span class="w"> </span>skip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="integration-examples">
+<h2>Integration Examples<a class="headerlink" href="#integration-examples" title="Link to this heading">#</a></h2>
+<section id="shell-scripting">
+<h3>Shell Scripting<a class="headerlink" href="#shell-scripting" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># process_daily_data.sh</span>
+
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/data/daily&quot;</span>
+<span class="nv">MODEL_PATH</span><span class="o">=</span><span class="s2">&quot;/models/production_model.py&quot;</span>
+<span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">&quot;/embeddings/daily&quot;</span>
+
+<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$DATA_DIR</span>/*.csv<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nv">basename</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span>.csv<span class="k">)</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Processing </span><span class="nv">$basename</span><span class="s2">...&quot;</span>
+
+<span class="w">  </span>row2vec-embed<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MODEL_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTPUT_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">basename</span><span class="si">}</span><span class="s2">_embeddings.csv&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--log-file<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTPUT_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">basename</span><span class="si">}</span><span class="s2">.log&quot;</span>
+<span class="k">done</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily processing complete!&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="python-integration">
+<h3>Python Integration<a class="headerlink" href="#python-integration" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate embeddings then process with Python</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+python<span class="w"> </span>analyze_embeddings.py<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="docker-usage">
+<h3>Docker Usage<a class="headerlink" href="#docker-usage" title="Link to this heading">#</a></h3>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Dockerfile</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10</span>
+
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>row2vec
+
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>/app
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Process data in container</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;row2vec&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;input/data.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--output&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;output/embeddings.csv&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and run</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>row2vec-processor<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data:/app/input<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/output:/app/output<span class="w"> </span>row2vec-processor
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-tips">
+<h2>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading">#</a></h2>
+<section id="optimization-strategies">
+<h3>Optimization Strategies<a class="headerlink" href="#optimization-strategies" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Large datasets: use sampling</span>
+row2vec<span class="w"> </span>huge_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">100000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch-size<span class="w"> </span><span class="m">1024</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Fast iteration: use PCA</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--mode<span class="w"> </span>pca<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">10</span><span class="w"> </span>--output<span class="w"> </span>quick_emb.csv
+
+<span class="c1"># Production quality: more epochs</span>
+row2vec-train<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-epochs<span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--early-stopping<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>final_model.pkl
+</pre></div>
+</div>
+</section>
+<section id="memory-management">
+<h3>Memory Management<a class="headerlink" href="#memory-management" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process in chunks for very large files</span>
+split<span class="w"> </span>-l<span class="w"> </span><span class="m">10000</span><span class="w"> </span>huge_data.csv<span class="w"> </span>chunk_
+<span class="k">for</span><span class="w"> </span>chunk<span class="w"> </span><span class="k">in</span><span class="w"> </span>chunk_*<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span>row2vec<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$chunk</span><span class="s2">&quot;</span><span class="w"> </span>--output<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">chunk</span><span class="si">}</span><span class="s2">_emb.csv&quot;</span>
+<span class="k">done</span>
+cat<span class="w"> </span>chunk_*_emb.csv<span class="w"> </span>&gt;<span class="w"> </span>all_embeddings.csv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">#</a></h3>
+<p><strong>Memory errors:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reduce batch size and sample data</span>
+row2vec<span class="w"> </span>large_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sample-size<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch-size<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+<p><strong>Slow performance:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use PCA for quick results</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--mode<span class="w"> </span>pca<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">5</span><span class="w"> </span>--output<span class="w"> </span>fast_emb.csv
+
+<span class="c1"># Or reduce epochs</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--max-epochs<span class="w"> </span><span class="m">10</span><span class="w"> </span>--output<span class="w"> </span>quick_emb.csv
+</pre></div>
+</div>
+<p><strong>Schema validation errors:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disable strict validation</span>
+row2vec-embed<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-strict-validation<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># General help</span>
+row2vec<span class="w"> </span>--help
+
+<span class="c1"># Command-specific help</span>
+row2vec-train<span class="w"> </span>--help
+row2vec-embed<span class="w"> </span>--help
+
+<span class="c1"># Version information</span>
+row2vec<span class="w"> </span>--version
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-reference">
+<h2>Configuration Reference<a class="headerlink" href="#configuration-reference" title="Link to this heading">#</a></h2>
+<p>Complete YAML configuration example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complete configuration example</span>
+<span class="nt">neural</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">max_epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128</span>
+<span class="w">  </span><span class="nt">dropout_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">  </span><span class="nt">hidden_units</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">256</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">128</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">early_stopping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">early_stopping_patience</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+
+<span class="nt">classical</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">n_neighbors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span><span class="w">        </span><span class="c1"># UMAP</span>
+<span class="w">  </span><span class="nt">perplexity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50.0</span><span class="w">      </span><span class="c1"># t-SNE</span>
+<span class="w">  </span><span class="nt">min_dist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span><span class="w">        </span><span class="c1"># UMAP</span>
+<span class="w">  </span><span class="nt">n_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w">          </span><span class="c1"># t-SNE</span>
+
+<span class="nt">preprocessing</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">categorical_encoding_strategy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adaptive&quot;</span>
+<span class="w">  </span><span class="nt">numeric_scaling</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;standard&quot;</span>
+<span class="w">  </span><span class="nt">handle_missing</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adaptive&quot;</span>
+
+<span class="nt">scaling</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;minmax&quot;</span>
+<span class="w">  </span><span class="nt">feature_range</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+
+<span class="nt">logging</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;INFO&quot;</span>
+<span class="w">  </span><span class="nt">enable_performance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">enable_memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>The CLI provides powerful batch processing capabilities while maintaining Row2Vec’s simplicity. Use it for production workflows, automation, and large-scale data processing.</p>
+</section>
+<section id="advanced-workflows">
+<h2>Advanced Workflows<a class="headerlink" href="#advanced-workflows" title="Link to this heading">#</a></h2>
+<section id="complete-ml-pipeline">
+<h3>Complete ML Pipeline<a class="headerlink" href="#complete-ml-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Explore with quick embeddings</span>
+row2vec<span class="w"> </span>exploration_data.csv<span class="w"> </span>--dimensions<span class="w"> </span><span class="m">10</span><span class="w"> </span>--output<span class="w"> </span>exploration.csv
+
+<span class="c1"># 2. Train production model</span>
+row2vec-train<span class="w"> </span>training_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target<span class="w"> </span>outcome<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--validation-split<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-epochs<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>production_model.pkl
+
+<span class="c1"># 3. Apply to new data</span>
+row2vec-embed<span class="w"> </span>new_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>production_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>predictions.csv
+</pre></div>
+</div>
+</section>
+<section id="production-deployment">
+<h3>Production Deployment<a class="headerlink" href="#production-deployment" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Model training with validation</span>
+row2vec-train<span class="w"> </span>historical_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target<span class="w"> </span>conversion<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--validation-split<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-epochs<span class="w"> </span><span class="m">150</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch-size<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--categorical-strategy<span class="w"> </span>adaptive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>production_model.pkl
+
+<span class="c1"># 2. Daily batch inference</span>
+row2vec-embed<span class="w"> </span>daily_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>production_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--validate-schema<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>daily_embeddings.parquet
+
+<span class="c1"># 3. Real-time inference</span>
+row2vec-embed<span class="w"> </span>realtime_batch.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>production_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--no-strict-validation<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>realtime_embeddings.json
+</pre></div>
+</div>
+</section>
+</section>
+<section id="schema-validation">
+<h2>Schema Validation<a class="headerlink" href="#schema-validation" title="Link to this heading">#</a></h2>
+<p>The CLI provides robust schema validation for production use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Strict validation (default)</span>
+row2vec-embed<span class="w"> </span>data.csv<span class="w"> </span>--model<span class="w"> </span>model.py<span class="w"> </span>--strict-validation<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Relaxed validation for data drift</span>
+row2vec-embed<span class="w"> </span>data.csv<span class="w"> </span>--model<span class="w"> </span>model.py<span class="w"> </span>--no-strict-validation<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Performance Tips<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use Parquet for large datasets</strong>: Better compression and faster I/O</p></li>
+<li><p><strong>Sample large datasets</strong>: Use <code class="docutils literal notranslate"><span class="pre">--sample-size</span></code> to manage memory</p></li>
+<li><p><strong>Enable early stopping</strong>: Reduces training time while maintaining quality</p></li>
+<li><p><strong>Use appropriate batch sizes</strong>: Larger batches for GPUs, smaller for CPUs</p></li>
+<li><p><strong>Cache trained models</strong>: Reuse models across similar datasets</p></li>
+<li><p><strong>Monitor memory usage</strong>: Enable performance logging for optimization</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>Troubleshooting<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>Common Issues<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><strong>Import errors</strong>: Ensure all dependencies are installed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>click<span class="w"> </span>rich<span class="w"> </span>pyyaml<span class="w"> </span>pandas<span class="w"> </span>scikit-learn<span class="w"> </span>tensorflow
+</pre></div>
+</div>
+<p><strong>Memory errors</strong>: Use sampling for large datasets</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>row2vec<span class="w"> </span>large_data.csv<span class="w"> </span>--sample-size<span class="w"> </span><span class="m">10000</span><span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+<p><strong>Schema validation failures</strong>: Use relaxed validation for data drift</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>row2vec-embed<span class="w"> </span>data.csv<span class="w"> </span>--model<span class="w"> </span>model.py<span class="w"> </span>--no-strict-validation<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+<p><strong>Training convergence</strong>: Adjust epochs and early stopping</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>row2vec-train<span class="w"> </span>data.csv<span class="w"> </span>--max-epochs<span class="w"> </span><span class="m">200</span><span class="w"> </span>--no-early-stopping<span class="w"> </span>--output<span class="w"> </span>model.pkl
+</pre></div>
+</div>
+</section>
+<section id="debug-mode">
+<h3>Debug Mode<a class="headerlink" href="#debug-mode" title="Link to this heading">#</a></h3>
+<p>Enable verbose output and logging for troubleshooting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>row2vec<span class="w"> </span>data.csv<span class="w"> </span>--verbose<span class="w"> </span>--log-level<span class="w"> </span>DEBUG<span class="w"> </span>--log-file<span class="w"> </span>debug.log<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>📖 <a class="reference internal" href="api_reference.html"><span class="std std-doc">API Reference</span></a> - Complete function documentation</p></li>
+<li><p>🏠 <a class="reference internal" href="titanic_example.html"><span class="std std-doc">Examples</span></a> - Return to interactive examples</p></li>
+<li><p>⚙️ <a class="reference internal" href="advanced_features.html"><span class="std std-doc">Advanced Features</span></a> - Neural architecture search and more</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="advanced_features.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced Features</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="theoretical_foundation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Theoretical Foundation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-commands-overview">CLI Commands Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage-examples">Basic Usage Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-embeddings">Quick Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-different-modes">Working with Different Modes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">Advanced Configuration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-configuration-files">Using Configuration Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-dataset-processing">Large Dataset Processing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-model-management">Training and Model Management</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-models">Train Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-trained-models">Apply Trained Models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-format-support">File Format Support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-workflow-examples">Real-World Workflow Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-science-pipeline">Data Science Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-analytics">Customer Analytics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-testing-setup">A/B Testing Setup</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-debugging">Monitoring and Debugging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verbose-output">Verbose Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-monitoring">Performance Monitoring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-examples">Integration Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-scripting">Shell Scripting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-integration">Python Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-usage">Docker Usage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-tips">Performance Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-strategies">Optimization Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-management">Memory Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">Common Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-reference">Configuration Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-workflows">Advanced Workflows</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-ml-pipeline">Complete ML Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-deployment">Production Deployment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-validation">Schema Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Performance Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Common Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-mode">Debug Mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

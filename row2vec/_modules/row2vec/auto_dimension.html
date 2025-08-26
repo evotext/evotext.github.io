@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>row2vec.auto_dimension &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/row2vec/auto_dimension';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/_modules/row2vec/auto_dimension.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for row2vec.auto_dimension</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Automatic Embedding Dimension Selection for Row2Vec</span>
+
+<span class="sd">This module provides intelligent dimension selection capabilities that automatically</span>
+<span class="sd">determine optimal embedding dimensions based on data characteristics and performance metrics.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocallyLinearEmbedding</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding_v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">NeuralConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+
+
+<div class="viewcode-block" id="AutoDimensionSelector">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.AutoDimensionSelector">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AutoDimensionSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Automatically selects optimal embedding dimensions using multiple strategies.</span>
+
+<span class="sd">    Combines data-driven analysis, performance optimization, and heuristic rules</span>
+<span class="sd">    to determine the best embedding dimension for a given dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">methods</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">performance_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span>
+        <span class="n">efficiency_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">intrinsic_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">max_dimension</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_dimension</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">n_trials</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize automatic dimension selector.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            methods: List of selection methods to use</span>
+<span class="sd">            performance_weight: Weight for performance-based selection</span>
+<span class="sd">            efficiency_weight: Weight for efficiency considerations</span>
+<span class="sd">            intrinsic_weight: Weight for intrinsic dimensionality estimation</span>
+<span class="sd">            max_dimension: Maximum dimension to consider (auto if None)</span>
+<span class="sd">            min_dimension: Minimum dimension to consider</span>
+<span class="sd">            n_trials: Number of trials for performance evaluation</span>
+<span class="sd">            verbose: Whether to show selection progress</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">methods</span> <span class="o">=</span> <span class="n">methods</span> <span class="ow">or</span> <span class="p">[</span>
+            <span class="s2">&quot;pca_variance&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;intrinsic_dim&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;performance_based&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;clustering_quality&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;heuristic_rules&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">performance_weight</span> <span class="o">=</span> <span class="n">performance_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">efficiency_weight</span> <span class="o">=</span> <span class="n">efficiency_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_weight</span> <span class="o">=</span> <span class="n">intrinsic_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_dimension</span> <span class="o">=</span> <span class="n">max_dimension</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_dimension</span> <span class="o">=</span> <span class="n">min_dimension</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_trials</span> <span class="o">=</span> <span class="n">n_trials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="c1"># Results storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selection_results_</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dimension_scores_</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="AutoDimensionSelector.select_dimension">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.AutoDimensionSelector.select_dimension">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_dimension</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select optimal embedding dimension for the given data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df: Input dataframe</span>
+<span class="sd">            config: Base embedding configuration (dimension will be overridden)</span>
+<span class="sd">            target_column: Optional target for supervised evaluation</span>
+<span class="sd">            candidate_dims: Specific dimensions to evaluate (auto-generated if None)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple of (optimal_dimension, selection_metadata)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># Generate candidate dimensions if not provided</span>
+        <span class="k">if</span> <span class="n">candidate_dims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">candidate_dims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_candidate_dimensions</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># Apply each selection method</span>
+        <span class="n">method_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">methods</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_method</span><span class="p">(</span>
+                    <span class="n">method</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">,</span> <span class="n">target_column</span>
+                <span class="p">)</span>
+                <span class="n">method_results</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="n">method_results</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+
+        <span class="c1"># Combine results using weighted voting</span>
+        <span class="n">optimal_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_combine_recommendations</span><span class="p">(</span><span class="n">method_results</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">)</span>
+
+        <span class="c1"># Store results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selection_results_</span> <span class="o">=</span> <span class="n">method_results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dimension_scores_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_dimension_scores</span><span class="p">(</span>
+            <span class="n">method_results</span><span class="p">,</span> <span class="n">candidate_dims</span>
+        <span class="p">)</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;candidate_dimensions&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">,</span>
+            <span class="s2">&quot;method_results&quot;</span><span class="p">:</span> <span class="n">method_results</span><span class="p">,</span>
+            <span class="s2">&quot;dimension_scores&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension_scores_</span><span class="p">,</span>
+            <span class="s2">&quot;selection_strategy&quot;</span><span class="p">:</span> <span class="s2">&quot;weighted_voting&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;performance&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">performance_weight</span><span class="p">,</span>
+                <span class="s2">&quot;efficiency&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">efficiency_weight</span><span class="p">,</span>
+                <span class="s2">&quot;intrinsic&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_weight</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">optimal_dim</span><span class="p">,</span> <span class="n">metadata</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_candidate_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate reasonable candidate dimensions based on data characteristics.&quot;&quot;&quot;</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c1"># Calculate various heuristic bounds</span>
+        <span class="n">sqrt_features</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_features</span><span class="p">))</span>
+        <span class="n">log_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+        <span class="c1"># Set reasonable bounds</span>
+        <span class="n">min_dim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_dimension</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_dimension</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_dimension</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Auto-determine max dimension</span>
+            <span class="n">max_dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="n">n_features</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">n_samples</span> <span class="o">//</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">sqrt_features</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">max_dim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_dim</span><span class="p">,</span> <span class="n">min_dim</span><span class="p">)</span>
+
+        <span class="c1"># Generate candidate list</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># Add heuristic-based candidates</span>
+        <span class="n">candidates</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">sqrt_features</span><span class="p">,</span> <span class="n">log_samples</span><span class="p">])</span>
+
+        <span class="c1"># Add evenly spaced candidates</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">max_dim</span> <span class="o">-</span> <span class="n">min_dim</span><span class="p">)</span> <span class="o">//</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="n">candidates</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_dim</span><span class="p">,</span> <span class="n">max_dim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+
+        <span class="c1"># Add boundary points</span>
+        <span class="n">candidates</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">min_dim</span><span class="p">,</span> <span class="n">max_dim</span><span class="p">])</span>
+
+        <span class="c1"># Filter and sort</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">candidates</span> <span class="k">if</span> <span class="n">min_dim</span> <span class="o">&lt;=</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">max_dim</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">candidates</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a specific dimension selection method.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;pca_variance&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pca_variance_method</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;intrinsic_dim&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intrinsic_dimensionality_method</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;performance_based&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_performance_based_method</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">,</span> <span class="n">target_column</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;clustering_quality&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clustering_quality_method</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;heuristic_rules&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heuristic_rules_method</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pca_variance_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select dimension based on PCA explained variance analysis.&quot;&quot;&quot;</span>
+        <span class="c1"># Prepare numeric data</span>
+        <span class="n">numeric_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="c1"># Fit PCA</span>
+        <span class="n">max_components</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">),</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">max_components</span><span class="p">)</span>
+        <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">numeric_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+        <span class="c1"># Find elbow point in explained variance</span>
+        <span class="n">explained_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+
+        <span class="c1"># Look for elbow using second derivative</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">second_deriv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">explained_var</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">elbow_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">second_deriv</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">elbow_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+        <span class="c1"># Find closest candidate dimension</span>
+        <span class="n">target_dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elbow_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">))</span>
+        <span class="n">recommended_dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">target_dim</span><span class="p">))</span>
+
+        <span class="c1"># Score based on variance explained at recommended dimension</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">explained_var</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">recommended_dim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">recommended_dim</span><span class="p">,</span>
+            <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+            <span class="s2">&quot;explained_variance&quot;</span><span class="p">:</span> <span class="n">explained_var</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;target_dimension&quot;</span><span class="p">:</span> <span class="n">target_dim</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_intrinsic_dimensionality_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate intrinsic dimensionality using manifold learning.&quot;&quot;&quot;</span>
+        <span class="c1"># Prepare numeric data</span>
+        <span class="n">numeric_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">empty</span> <span class="ow">or</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Use subset if data is large</span>
+            <span class="n">sample_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">sample_size</span> <span class="o">&lt;</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">sample_data</span> <span class="o">=</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1305</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sample_data</span> <span class="o">=</span> <span class="n">numeric_df</span>
+
+            <span class="n">sample_data</span> <span class="o">=</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="c1"># Estimate using locally linear embedding reconstruction error</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">test_dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">candidate_dims</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+            <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">test_dims</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">lle</span> <span class="o">=</span> <span class="n">LocallyLinearEmbedding</span><span class="p">(</span>
+                        <span class="n">n_components</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span>
+                        <span class="n">n_neighbors</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                        <span class="n">random_state</span><span class="o">=</span><span class="mi">1305</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">lle</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>
+                    <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lle</span><span class="o">.</span><span class="n">reconstruction_error_</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">errors</span> <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+                <span class="p">}</span>
+
+            <span class="c1"># Find dimension where error stabilizes</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+            <span class="n">valid_errors</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">errors</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_errors</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">recommended_dim</span> <span class="o">=</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Normalize errors and find stabilization point</span>
+                <span class="n">norm_errors</span> <span class="o">=</span> <span class="p">(</span><span class="n">valid_errors</span> <span class="o">-</span> <span class="n">valid_errors</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span>
+                    <span class="n">valid_errors</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">valid_errors</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-8</span>
+                <span class="p">)</span>
+                <span class="n">diff_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">norm_errors</span><span class="p">)</span>
+
+                <span class="c1"># Find where improvement becomes marginal</span>
+                <span class="n">stabilization_idx</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">diff</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">diff_errors</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>  <span class="c1"># Less than 10% relative improvement</span>
+                        <span class="n">stabilization_idx</span> <span class="o">=</span> <span class="n">i</span>
+                        <span class="k">break</span>
+
+                <span class="n">recommended_dim</span> <span class="o">=</span> <span class="n">test_dims</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">stabilization_idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_dims</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+
+            <span class="c1"># Score based on error reduction</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">errors</span><span class="p">[</span><span class="n">test_dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">recommended_dim</span><span class="p">)])</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">recommended_dim</span><span class="p">,</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+                <span class="s2">&quot;reconstruction_errors&quot;</span><span class="p">:</span> <span class="n">errors</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">&quot;test_dimensions&quot;</span><span class="p">:</span> <span class="n">test_dims</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_performance_based_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select dimension based on downstream task performance.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">target_column</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">target_column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="c1"># Use unsupervised clustering quality</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clustering_quality_method</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">)</span>
+
+        <span class="c1"># Supervised evaluation</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_column</span><span class="p">])</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_column</span><span class="p">]</span>
+
+            <span class="c1"># Encode target if categorical</span>
+            <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">:</span>
+                <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+            <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">candidate_dims</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Generate embeddings</span>
+                    <span class="n">test_config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+                        <span class="n">embedding_dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span>
+                        <span class="n">neural</span><span class="o">=</span><span class="n">NeuralConfig</span><span class="p">(</span>
+                            <span class="n">max_epochs</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">)</span>
+                        <span class="p">),</span>  <span class="c1"># Faster evaluation</span>
+                        <span class="n">scaling</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">scaling</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">test_config</span><span class="p">)</span>
+
+                    <span class="c1"># Evaluate with simple classifier</span>
+                    <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1305</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+                    <span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+                        <span class="n">clf</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span>
+                    <span class="p">)</span>
+                    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cv_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">scores</span> <span class="ow">or</span> <span class="nb">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+                <span class="p">}</span>
+
+            <span class="n">best_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+            <span class="n">recommended_dim</span> <span class="o">=</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="n">best_idx</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">recommended_dim</span><span class="p">,</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">scores</span><span class="p">[</span><span class="n">best_idx</span><span class="p">],</span>
+                <span class="s2">&quot;all_scores&quot;</span><span class="p">:</span> <span class="n">scores</span><span class="p">,</span>
+                <span class="s2">&quot;evaluation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;supervised_classification&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_clustering_quality_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+        <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select dimension based on clustering quality metrics.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">silhouette_scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">candidate_dims</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Generate embeddings with fast configuration</span>
+                    <span class="n">test_config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;pca&quot;</span>
+                        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span> <span class="s2">&quot;contrastive&quot;</span><span class="p">]</span>
+                        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+                        <span class="n">embedding_dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span>
+                        <span class="n">scaling</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">scaling</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_config</span><span class="p">)</span>
+
+                    <span class="c1"># Perform clustering</span>
+                    <span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)))),</span> <span class="mi">10</span><span class="p">)</span>
+                    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1305</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                    <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+
+                    <span class="c1"># Calculate silhouette score</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">sil_score</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">sil_score</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+                    <span class="n">silhouette_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sil_score</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">silhouette_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">silhouette_scores</span> <span class="ow">or</span> <span class="nb">max</span><span class="p">(</span><span class="n">silhouette_scores</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+                <span class="p">}</span>
+
+            <span class="n">best_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">silhouette_scores</span><span class="p">)</span>
+            <span class="n">recommended_dim</span> <span class="o">=</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="n">best_idx</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">recommended_dim</span><span class="p">,</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">silhouette_scores</span><span class="p">[</span><span class="n">best_idx</span><span class="p">],</span>
+                <span class="s2">&quot;silhouette_scores&quot;</span><span class="p">:</span> <span class="n">silhouette_scores</span><span class="p">,</span>
+                <span class="s2">&quot;evaluation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;clustering_quality&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_heuristic_rules_method</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply rule-of-thumb heuristics for dimension selection.&quot;&quot;&quot;</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c1"># Calculate various heuristic recommendations</span>
+        <span class="n">heuristics</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;sqrt_features&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_features</span><span class="p">)),</span>
+            <span class="s2">&quot;log_samples&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">2</span><span class="p">))),</span>
+            <span class="s2">&quot;features_ratio&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">//</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="s2">&quot;sample_ratio&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">/</span> <span class="mi">10</span><span class="p">))),</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Weight heuristics based on data characteristics</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;sqrt_features&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+            <span class="s2">&quot;log_samples&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+            <span class="s2">&quot;features_ratio&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+            <span class="s2">&quot;sample_ratio&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Adjust weights based on data size</span>
+        <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;sample_ratio&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">n_features</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+            <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;features_ratio&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.5</span>
+
+        <span class="c1"># Calculate weighted recommendation</span>
+        <span class="n">weighted_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">heuristics</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heuristics</span><span class="p">)</span>
+        <span class="n">target_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">weighted_sum</span><span class="p">)</span>
+
+        <span class="c1"># Find closest candidate</span>
+        <span class="n">recommended_dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">target_dim</span><span class="p">))</span>
+
+        <span class="c1"># Score based on how well it matches multiple heuristics</span>
+        <span class="n">agreements</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="mi">1</span> <span class="k">for</span> <span class="n">h_dim</span> <span class="ow">in</span> <span class="n">heuristics</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">h_dim</span> <span class="o">-</span> <span class="n">recommended_dim</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">agreements</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heuristics</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;recommended_dim&quot;</span><span class="p">:</span> <span class="n">recommended_dim</span><span class="p">,</span>
+            <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+            <span class="s2">&quot;heuristics&quot;</span><span class="p">:</span> <span class="n">heuristics</span><span class="p">,</span>
+            <span class="s2">&quot;target_dimension&quot;</span><span class="p">:</span> <span class="n">target_dim</span><span class="p">,</span>
+            <span class="s2">&quot;agreements&quot;</span><span class="p">:</span> <span class="n">agreements</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_combine_recommendations</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">method_results</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combine recommendations from different methods using weighted voting.&quot;&quot;&quot;</span>
+        <span class="c1"># Create vote matrix</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="c1"># Weight mapping for methods</span>
+        <span class="n">method_weights</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;pca_variance&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_weight</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">,</span>
+            <span class="s2">&quot;intrinsic_dim&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_weight</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">,</span>
+            <span class="s2">&quot;performance_based&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">performance_weight</span><span class="p">,</span>
+            <span class="s2">&quot;clustering_quality&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">performance_weight</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span>
+            <span class="s2">&quot;heuristic_rules&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">efficiency_weight</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Accumulate weighted votes</span>
+        <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">method_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;recommended_dim&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="n">method_weights</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+                <span class="n">votes</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;recommended_dim&quot;</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">weight</span>
+
+        <span class="c1"># Find dimension with highest vote</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">votes</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="n">candidate_dims</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">votes</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">votes</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_dimension_scores</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">method_results</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">candidate_dims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate overall scores for each candidate dimension.&quot;&quot;&quot;</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">candidate_dims</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="n">method_weights</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;pca_variance&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_weight</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">,</span>
+            <span class="s2">&quot;intrinsic_dim&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">intrinsic_weight</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">,</span>
+            <span class="s2">&quot;performance_based&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">performance_weight</span><span class="p">,</span>
+            <span class="s2">&quot;clustering_quality&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">performance_weight</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span>
+            <span class="s2">&quot;heuristic_rules&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">efficiency_weight</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">method_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;recommended_dim&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="n">method_weights</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+                <span class="n">recommended_dim</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;recommended_dim&quot;</span><span class="p">]</span>
+                <span class="n">method_score</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+
+                <span class="c1"># Distribute score to nearby dimensions with falloff</span>
+                <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">candidate_dims</span><span class="p">:</span>
+                    <span class="n">distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dim</span> <span class="o">-</span> <span class="n">recommended_dim</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">distance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">scores</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">method_score</span>
+                    <span class="k">elif</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">scores</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">method_score</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">**</span><span class="n">distance</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">scores</span></div>
+
+
+
+<div class="viewcode-block" id="auto_select_dimension">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.auto_select_dimension">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">auto_select_dimension</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">target_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">methods</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">selector_kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience function for automatic dimension selection.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: Input dataframe</span>
+<span class="sd">        config: Base embedding configuration (uses defaults if None)</span>
+<span class="sd">        target_column: Optional target column for supervised evaluation</span>
+<span class="sd">        methods: List of selection methods to use</span>
+<span class="sd">        **selector_kwargs: Additional arguments for AutoDimensionSelector</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of (optimal_dimension, selection_metadata)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">5</span>
+        <span class="p">)</span>  <span class="c1"># Temporary, will be overridden</span>
+
+    <span class="n">selector</span> <span class="o">=</span> <span class="n">AutoDimensionSelector</span><span class="p">(</span><span class="n">methods</span><span class="o">=</span><span class="n">methods</span><span class="p">,</span> <span class="o">**</span><span class="n">selector_kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">selector</span><span class="o">.</span><span class="n">select_dimension</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

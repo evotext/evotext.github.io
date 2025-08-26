@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>row2vec.sklearn &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/row2vec/sklearn';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/_modules/row2vec/sklearn.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for row2vec.sklearn</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Scikit-learn integration for Row2Vec embeddings.</span>
+
+<span class="sd">This module provides scikit-learn compatible transformers for Row2Vec,</span>
+<span class="sd">allowing seamless integration with sklearn pipelines and workflows.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_is_fitted</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding_v2</span><span class="p">,</span> <span class="n">learn_embedding_with_model_v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">create_config_for_mode</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Row2VecModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for Row2Vec models to provide consistent interface.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">preprocessor</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocessor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate embeddings for new data.&quot;&quot;&quot;</span>
+        <span class="c1"># Use the existing API to generate embeddings with the same config</span>
+        <span class="k">return</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Row2VecTransformer">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecTransformer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Row2VecTransformer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scikit-learn compatible transformer for Row2Vec embeddings.</span>
+
+<span class="sd">    This transformer can be used in sklearn pipelines and follows the</span>
+<span class="sd">    standard fit/transform API. It internally uses Row2Vec&#39;s config-based</span>
+<span class="sd">    API for flexibility and type safety.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    embedding_dim : int, default=10</span>
+<span class="sd">        Dimensionality of the embedding space.</span>
+<span class="sd">    mode : str, default=&quot;unsupervised&quot;</span>
+<span class="sd">        Embedding mode. Options: &quot;unsupervised&quot;, &quot;target&quot;, &quot;pca&quot;, &quot;tsne&quot;, &quot;umap&quot;, &quot;contrastive&quot;.</span>
+<span class="sd">    reference_column : str, optional</span>
+<span class="sd">        Reference column name for supervised (&quot;target&quot;) mode.</span>
+<span class="sd">    config : EmbeddingConfig, optional</span>
+<span class="sd">        Pre-configured EmbeddingConfig object. If provided, other parameters are ignored.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional parameters passed to the embedding configuration.</span>
+<span class="sd">        These can include nested parameters like neural__max_epochs=100.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    config_ : EmbeddingConfig</span>
+<span class="sd">        The configuration object used for embedding generation.</span>
+<span class="sd">    model_ : object</span>
+<span class="sd">        The trained Row2Vec model (if using model-based modes).</span>
+<span class="sd">    feature_names_in_ : ndarray of shape (n_features,)</span>
+<span class="sd">        Names of features seen during fit.</span>
+<span class="sd">    n_features_in_ : int</span>
+<span class="sd">        Number of features seen during fit.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from row2vec.sklearn import Row2VecTransformer</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # Simple usage</span>
+<span class="sd">    &gt;&gt;&gt; transformer = Row2VecTransformer(embedding_dim=5, mode=&quot;unsupervised&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; X_embedded = transformer.fit_transform(df)</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # In a pipeline</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.pipeline import Pipeline</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cluster import KMeans</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; pipeline = Pipeline([</span>
+<span class="sd">    ...     (&#39;embed&#39;, Row2VecTransformer(embedding_dim=10)),</span>
+<span class="sd">    ...     (&#39;cluster&#39;, KMeans(n_clusters=3))</span>
+<span class="sd">    ... ])</span>
+<span class="sd">    &gt;&gt;&gt; pipeline.fit(df)</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # With configuration object</span>
+<span class="sd">    &gt;&gt;&gt; from row2vec.config import EmbeddingConfig, NeuralConfig</span>
+<span class="sd">    &gt;&gt;&gt; config = EmbeddingConfig(</span>
+<span class="sd">    ...     mode=&quot;unsupervised&quot;,</span>
+<span class="sd">    ...     embedding_dim=15,</span>
+<span class="sd">    ...     neural=NeuralConfig(max_epochs=100, batch_size=32)</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; transformer = Row2VecTransformer(config=config)</span>
+<span class="sd">    &gt;&gt;&gt; X_embedded = transformer.fit_transform(df)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+        <span class="n">reference_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">embedding_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_column</span> <span class="o">=</span> <span class="n">reference_column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="c1"># Initialize attributes that will be set in fit()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span><span class="p">:</span> <span class="n">Row2VecModel</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EmbeddingConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the embedding configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+
+        <span class="c1"># Create base config for the mode</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">create_config_for_mode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">embedding_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;target&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">reference_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_column</span>
+
+        <span class="c1"># Apply any additional kwargs</span>
+        <span class="c1"># Handle nested parameters like neural__max_epochs</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;__&quot;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="c1"># Handle nested parameters (sklearn convention)</span>
+                <span class="n">section</span><span class="p">,</span> <span class="n">param</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+                    <span class="n">section_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">section</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">section_config</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="n">section_config</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="c1"># Handle top-level parameters</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">config</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate and convert input to DataFrame.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="c1"># Convert numpy array to DataFrame</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;feature_names_in_&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;X has </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features, but transformer was fitted with &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">)</span><span class="si">}</span><span class="s2"> features&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Try to convert to numpy array first (handles sparse matrices, etc.)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;feature_names_in_&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;X has </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features, but transformer was fitted with &quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">)</span><span class="si">}</span><span class="s2"> features&quot;</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                        <span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+                    <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot convert input to DataFrame: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span>  <span class="c1"># type: ignore[no-any-return]</span>
+
+<div class="viewcode-block" id="Row2VecTransformer.fit">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecTransformer.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Row2VecTransformer&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit the Row2Vec transformer.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : DataFrame or array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data.</span>
+<span class="sd">        y : array-like of shape (n_samples,), optional</span>
+<span class="sd">            Target values (ignored, exists for sklearn compatibility).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : Row2VecTransformer</span>
+<span class="sd">            Returns the instance itself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># Store input information for sklearn compatibility</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+        <span class="c1"># Create configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_config</span><span class="p">()</span>
+
+        <span class="c1"># For modes that require a model, fit it</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;contrastive&quot;</span><span class="p">]:</span>
+            <span class="c1"># Train the model and store it</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">learn_embedding_with_model_v2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_</span><span class="p">)</span>
+            <span class="n">embeddings</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span> <span class="o">=</span> <span class="n">Row2VecModel</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For classical methods, no model storage needed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Row2VecTransformer.transform">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecTransformer.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transform data to embedding space.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : DataFrame or array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Data to transform.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        X_embedded : ndarray of shape (n_samples, embedding_dim)</span>
+<span class="sd">            Embedded data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;config_&quot;</span><span class="p">])</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Use the fitted model to embed new data</span>
+            <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For classical methods or fallback, apply transformation directly</span>
+            <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">values</span></div>
+
+
+<div class="viewcode-block" id="Row2VecTransformer.fit_transform">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecTransformer.fit_transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit the transformer and transform the data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : DataFrame or array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data.</span>
+<span class="sd">        y : array-like of shape (n_samples,), optional</span>
+<span class="sd">            Target values (ignored, exists for sklearn compatibility).</span>
+<span class="sd">        **fit_params : dict</span>
+<span class="sd">            Additional parameters (ignored, exists for sklearn compatibility).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        X_embedded : ndarray of shape (n_samples, embedding_dim)</span>
+<span class="sd">            Embedded training data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># Store input information for sklearn compatibility</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+        <span class="c1"># Create configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_config</span><span class="p">()</span>
+
+        <span class="c1"># Generate embeddings</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_</span><span class="p">)</span>
+
+        <span class="c1"># For neural modes, we might want to store the model for future transforms</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;contrastive&quot;</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">learn_embedding_with_model_v2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_</span><span class="p">)</span>
+                <span class="n">embeddings_model</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">result</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span> <span class="o">=</span> <span class="n">Row2VecModel</span><span class="p">(</span>
+                    <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_</span>
+                <span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="c1"># If model creation fails, fall back to no model</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_wrapper_</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">values</span></div>
+
+
+<div class="viewcode-block" id="Row2VecTransformer.get_feature_names_out">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecTransformer.get_feature_names_out">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_feature_names_out</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">input_features</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get output feature names for transformation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        input_features : array-like of str or None, default=None</span>
+<span class="sd">            Not used, exists for sklearn compatibility.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        feature_names_out : ndarray of shape (embedding_dim,), dtype=str</span>
+<span class="sd">            Feature names for the embedded space.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;config_&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;row2vec_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">)])</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_more_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return tags for sklearn compatibility.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;requires_y&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;requires_fit&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;X_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;2darray&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;allow_nan&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;stateless&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;no_validation&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="Row2VecClassifier">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecClassifier">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Row2VecClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scikit-learn compatible classifier using Row2Vec embeddings.</span>
+
+<span class="sd">    This combines Row2Vec embedding generation with a downstream classifier,</span>
+<span class="sd">    making it easy to use embeddings for classification tasks in sklearn pipelines.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    embedding_dim : int, default=10</span>
+<span class="sd">        Dimensionality of the embedding space.</span>
+<span class="sd">    classifier : sklearn classifier, optional</span>
+<span class="sd">        The downstream classifier. If None, uses LogisticRegression.</span>
+<span class="sd">    embedding_config : EmbeddingConfig, optional</span>
+<span class="sd">        Configuration for embedding generation.</span>
+<span class="sd">    **embedding_kwargs</span>
+<span class="sd">        Additional parameters for embedding configuration.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from row2vec.sklearn import Row2VecClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # With default classifier</span>
+<span class="sd">    &gt;&gt;&gt; clf = Row2VecClassifier(embedding_dim=15)</span>
+<span class="sd">    &gt;&gt;&gt; clf.fit(X_train, y_train)</span>
+<span class="sd">    &gt;&gt;&gt; predictions = clf.predict(X_test)</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # With custom classifier</span>
+<span class="sd">    &gt;&gt;&gt; clf = Row2VecClassifier(</span>
+<span class="sd">    ...     embedding_dim=20,</span>
+<span class="sd">    ...     classifier=RandomForestClassifier(n_estimators=100)</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; clf.fit(X_train, y_train)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">classifier</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">embedding_config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">embedding_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">embedding_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">classifier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_config</span> <span class="o">=</span> <span class="n">embedding_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_kwargs</span> <span class="o">=</span> <span class="n">embedding_kwargs</span>
+
+<div class="viewcode-block" id="Row2VecClassifier.fit">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecClassifier.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Row2VecClassifier&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the embedding and classifier.&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+        <span class="c1"># Set up embedding transformer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_transformer_</span> <span class="o">=</span> <span class="n">Row2VecTransformer</span><span class="p">(</span>
+            <span class="n">embedding_dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">,</span>
+            <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_config</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Set up classifier</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classifier_</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1305</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classifier_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span>
+
+        <span class="c1"># Fit embedding transformer and transform data</span>
+        <span class="n">X_embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_transformer_</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># Fit classifier on embedded data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_embedded</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Row2VecClassifier.predict">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecClassifier.predict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make predictions on new data.&quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;embedding_transformer_&quot;</span><span class="p">,</span> <span class="s2">&quot;classifier_&quot;</span><span class="p">])</span>
+
+        <span class="n">X_embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_transformer_</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_embedded</span><span class="p">)</span>  <span class="c1"># type: ignore[no-any-return]</span></div>
+
+
+<div class="viewcode-block" id="Row2VecClassifier.predict_proba">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecClassifier.predict_proba">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict class probabilities.&quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;embedding_transformer_&quot;</span><span class="p">,</span> <span class="s2">&quot;classifier_&quot;</span><span class="p">])</span>
+
+        <span class="n">X_embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_transformer_</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_embedded</span><span class="p">)</span>  <span class="c1"># type: ignore[no-any-return]</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

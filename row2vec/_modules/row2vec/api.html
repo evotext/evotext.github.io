@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>row2vec.api &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/row2vec/api';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/_modules/row2vec/api.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for row2vec.api</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Modernized Row2Vec API with config-based parameters.</span>
+
+<span class="sd">This module provides the new config-based API for Row2Vec embedding learning.</span>
+<span class="sd">The old parameter-based API is maintained for backward compatibility but will</span>
+<span class="sd">be deprecated in future versions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.architecture_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArchitectureSearchConfig</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">create_config_for_mode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding</span> <span class="k">as</span> <span class="n">_legacy_learn_embedding</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding_with_model</span> <span class="k">as</span> <span class="n">_legacy_learn_embedding_with_model</span>
+
+
+<div class="viewcode-block" id="learn_embedding_v2">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.learn_embedding_v2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">learn_embedding_v2</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">auto_architecture</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">architecture_search_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;ArchitectureSearchConfig&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">config_overrides</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modern config-based API for learning embeddings from tabular data.</span>
+
+<span class="sd">    This is the new recommended API that uses configuration objects instead</span>
+<span class="sd">    of long parameter lists. It provides better organization, type safety,</span>
+<span class="sd">    and extensibility.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: Input DataFrame containing the data to embed</span>
+<span class="sd">        config: Complete embedding configuration. If None, default config is used.</span>
+<span class="sd">        auto_architecture: Enable automatic neural architecture search for neural modes</span>
+<span class="sd">        architecture_search_config: Custom architecture search configuration</span>
+<span class="sd">        **config_overrides: Override specific config values (supports nested keys with dots)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame containing the learned embeddings</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        # Basic usage with defaults</span>
+<span class="sd">        embeddings = learn_embedding_v2(df)</span>
+
+<span class="sd">        # Using a custom config</span>
+<span class="sd">        config = EmbeddingConfig(</span>
+<span class="sd">            mode=&quot;contrastive&quot;,</span>
+<span class="sd">            embedding_dim=50,</span>
+<span class="sd">            contrastive=ContrastiveConfig(loss_type=&quot;triplet&quot;, margin=2.0)</span>
+<span class="sd">        )</span>
+<span class="sd">        embeddings = learn_embedding_v2(df, config)</span>
+
+<span class="sd">        # With automatic architecture search</span>
+<span class="sd">        embeddings = learn_embedding_v2(df, config, auto_architecture=True)</span>
+
+<span class="sd">        # Quick overrides without config object</span>
+<span class="sd">        embeddings = learn_embedding_v2(df, embedding_dim=20, mode=&quot;target&quot;, reference_column=&quot;category&quot;)</span>
+
+<span class="sd">        # Loading from YAML</span>
+<span class="sd">        config = EmbeddingConfig.from_yaml(&quot;my_config.yaml&quot;)</span>
+<span class="sd">        embeddings = learn_embedding_v2(df, config)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">()</span>
+
+    <span class="c1"># Apply any config overrides</span>
+    <span class="k">if</span> <span class="n">config_overrides</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">_apply_config_overrides</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config_overrides</span><span class="p">)</span>
+
+    <span class="c1"># Handle automatic architecture search for neural modes</span>
+    <span class="k">if</span> <span class="n">auto_architecture</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;contrastive&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>  <span class="c1"># Neural-based modes</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.architecture_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArchitectureSearchConfig</span><span class="p">,</span> <span class="n">search_architecture</span>
+
+        <span class="k">if</span> <span class="n">architecture_search_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">architecture_search_config</span> <span class="o">=</span> <span class="n">ArchitectureSearchConfig</span><span class="p">()</span>
+
+        <span class="c1"># Perform architecture search</span>
+        <span class="n">best_architecture</span><span class="p">,</span> <span class="n">search_result</span> <span class="o">=</span> <span class="n">search_architecture</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">architecture_search_config</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Update config with best architecture</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">hidden_units</span> <span class="o">=</span> <span class="n">best_architecture</span><span class="p">[</span><span class="s2">&quot;hidden_units&quot;</span><span class="p">]</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">dropout_rate</span> <span class="o">=</span> <span class="n">best_architecture</span><span class="p">[</span><span class="s2">&quot;dropout_rate&quot;</span><span class="p">]</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">best_architecture</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">architecture_search_config</span> <span class="ow">and</span> <span class="n">architecture_search_config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">search_result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+    <span class="c1"># Convert config to legacy parameters and call the existing function</span>
+    <span class="n">legacy_params</span> <span class="o">=</span> <span class="n">_config_to_legacy_params</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_legacy_learn_embedding</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">legacy_params</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="learn_embedding_with_model_v2">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.learn_embedding_with_model_v2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">learn_embedding_with_model_v2</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">config_overrides</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">Any</span> <span class="o">|</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modern config-based API for learning embeddings with model artifacts.</span>
+
+<span class="sd">    This function returns the embeddings along with the trained model,</span>
+<span class="sd">    preprocessor, and metadata for serialization purposes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: Input DataFrame containing the data to embed</span>
+<span class="sd">        config: Complete embedding configuration. If None, default config is used.</span>
+<span class="sd">        **config_overrides: Override specific config values</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of (embeddings, model, preprocessor, metadata)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">()</span>
+
+    <span class="c1"># Apply any config overrides</span>
+    <span class="k">if</span> <span class="n">config_overrides</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">_apply_config_overrides</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config_overrides</span><span class="p">)</span>
+
+    <span class="c1"># Convert config to legacy parameters and call the existing function</span>
+    <span class="n">legacy_params</span> <span class="o">=</span> <span class="n">_config_to_legacy_params</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_legacy_learn_embedding_with_model</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">legacy_params</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_apply_config_overrides</span><span class="p">(</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">,</span> <span class="n">overrides</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EmbeddingConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply override values to a config object.&quot;&quot;&quot;</span>
+    <span class="c1"># Convert config to dict, apply overrides, and convert back</span>
+    <span class="n">config_dict</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+    <span class="c1"># Neural method parameters that need special handling</span>
+    <span class="n">neural_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;max_epochs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dropout_rate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hidden_units&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;early_stopping&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Classical method parameters that need special handling</span>
+    <span class="n">classical_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;n_neighbors&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;perplexity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;min_dist&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;n_iter&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Contrastive method parameters that need special handling</span>
+    <span class="n">contrastive_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;similar_pairs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dissimilar_pairs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;auto_pairs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;contrastive_loss&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;margin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;negative_samples&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">overrides</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+            <span class="c1"># Handle nested keys like &quot;neural.max_epochs&quot;</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">config_dict</span>
+            <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">part</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current</span><span class="p">:</span>
+                    <span class="n">current</span><span class="p">[</span><span class="n">part</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">part</span><span class="p">]</span>
+            <span class="n">current</span><span class="p">[</span><span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">neural_params</span><span class="p">:</span>
+            <span class="c1"># Handle neural parameters</span>
+            <span class="k">if</span> <span class="s2">&quot;neural&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">:</span>
+                <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;neural&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;neural&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">classical_params</span><span class="p">:</span>
+            <span class="c1"># Handle classical parameters</span>
+            <span class="k">if</span> <span class="s2">&quot;classical&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">:</span>
+                <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;classical&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;classical&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">contrastive_params</span><span class="p">:</span>
+            <span class="c1"># Handle contrastive parameters</span>
+            <span class="k">if</span> <span class="s2">&quot;contrastive&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">:</span>
+                <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;contrastive&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;contrastive&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Handle top-level keys</span>
+            <span class="n">config_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">EmbeddingConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_config_to_legacy_params</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">EmbeddingConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert an EmbeddingConfig to legacy function parameters.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="c1"># Core parameters</span>
+        <span class="s2">&quot;embedding_dim&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">,</span>
+        <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+        <span class="s2">&quot;reference_column&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">reference_column</span><span class="p">,</span>
+        <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
+        <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="c1"># Neural parameters</span>
+        <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">,</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="s2">&quot;dropout_rate&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">dropout_rate</span><span class="p">,</span>
+        <span class="s2">&quot;hidden_units&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">hidden_units</span><span class="p">,</span>
+        <span class="s2">&quot;early_stopping&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">neural</span><span class="o">.</span><span class="n">early_stopping</span><span class="p">,</span>
+        <span class="c1"># Classical parameters</span>
+        <span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">classical</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
+        <span class="s2">&quot;perplexity&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">classical</span><span class="o">.</span><span class="n">perplexity</span><span class="p">,</span>
+        <span class="s2">&quot;min_dist&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">classical</span><span class="o">.</span><span class="n">min_dist</span><span class="p">,</span>
+        <span class="s2">&quot;n_iter&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">classical</span><span class="o">.</span><span class="n">n_iter</span><span class="p">,</span>
+        <span class="c1"># Contrastive parameters</span>
+        <span class="s2">&quot;similar_pairs&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="o">.</span><span class="n">similar_pairs</span><span class="p">,</span>
+        <span class="s2">&quot;dissimilar_pairs&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="o">.</span><span class="n">dissimilar_pairs</span><span class="p">,</span>
+        <span class="s2">&quot;auto_pairs&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="o">.</span><span class="n">auto_pairs</span><span class="p">,</span>
+        <span class="s2">&quot;contrastive_loss&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="o">.</span><span class="n">loss_type</span><span class="p">,</span>
+        <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="o">.</span><span class="n">margin</span><span class="p">,</span>
+        <span class="s2">&quot;negative_samples&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="o">.</span><span class="n">negative_samples</span><span class="p">,</span>
+        <span class="c1"># Scaling parameters</span>
+        <span class="s2">&quot;scale_method&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">scaling</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+        <span class="s2">&quot;scale_range&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">scaling</span><span class="o">.</span><span class="n">range</span><span class="p">,</span>
+        <span class="c1"># Logging parameters</span>
+        <span class="s2">&quot;log_level&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">level</span><span class="p">,</span>
+        <span class="s2">&quot;log_file&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">file</span><span class="p">,</span>
+        <span class="s2">&quot;enable_logging&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">enabled</span><span class="p">,</span>
+    <span class="p">}</span>
+
+
+<span class="c1"># Convenience functions for common configurations</span>
+<div class="viewcode-block" id="learn_embedding_unsupervised">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.learn_embedding_unsupervised">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">learn_embedding_unsupervised</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Learn unsupervised embeddings with optimized defaults.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="learn_embedding_target">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.learn_embedding_target">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">learn_embedding_target</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">reference_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Learn target-based embeddings with optimized defaults.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">reference_column</span><span class="o">=</span><span class="n">reference_column</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="n">embedding_dim</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">learn_embedding_contrastive</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convenience function for contrastive learning with optimized defaults.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">create_config_for_mode</span><span class="p">(</span><span class="s2">&quot;contrastive&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Handle contrastive-specific parameters that should go under contrastive config</span>
+    <span class="n">contrastive_params</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;loss_type&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">,</span> <span class="s2">&quot;negative_samples&quot;</span><span class="p">,</span> <span class="s2">&quot;auto_pairs&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">overrides</span><span class="p">:</span>
+            <span class="n">contrastive_params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">overrides</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># Apply contrastive overrides</span>
+    <span class="k">if</span> <span class="n">contrastive_params</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">contrastive_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">contrastive</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="learn_embedding_classical">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.learn_embedding_classical">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">learn_embedding_classical</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Learn classical ML embeddings (PCA, t-SNE, UMAP) with optimized defaults.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span> <span class="s2">&quot;umap&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;method must be one of: pca, tsne, umap&quot;</span><span class="p">)</span>
+
+    <span class="n">config</span> <span class="o">=</span> <span class="n">EmbeddingConfig</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">learn_embedding_v2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">overrides</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

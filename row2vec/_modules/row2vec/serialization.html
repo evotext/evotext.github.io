@@ -1,0 +1,1054 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>row2vec.serialization &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/row2vec/serialization';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/_modules/row2vec/serialization.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for row2vec.serialization</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Row2Vec: Model Serialization and Persistence</span>
+
+<span class="sd">This module provides functionality to save and load trained Row2Vec models</span>
+<span class="sd">with their preprocessing pipelines and training metadata using a transparent</span>
+<span class="sd">two-file approach (Python script + binary blob).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_dataframe_schema</span>
+
+
+<div class="viewcode-block" id="Row2VecModelMetadata">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecModelMetadata">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Row2VecModelMetadata</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Container for Row2Vec model training metadata.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="c1"># Training parameters</span>
+        <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">reference_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
+        <span class="n">dropout_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">hidden_units</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+        <span class="n">early_stopping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1305</span><span class="p">,</span>
+        <span class="n">scale_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="c1"># Classical ML parameters</span>
+        <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">perplexity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+        <span class="n">min_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">n_iter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="c1"># Training results</span>
+        <span class="n">training_history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">final_loss</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">epochs_trained</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">training_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="c1"># Data information</span>
+        <span class="n">original_columns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">preprocessed_feature_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_shape</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_types</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="c1"># Schema validation</span>
+        <span class="n">expected_schema</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Training configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">embedding_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_column</span> <span class="o">=</span> <span class="n">reference_column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_epochs</span> <span class="o">=</span> <span class="n">max_epochs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout_rate</span> <span class="o">=</span> <span class="n">dropout_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_units</span> <span class="o">=</span> <span class="n">hidden_units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">early_stopping</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_method</span> <span class="o">=</span> <span class="n">scale_method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_range</span> <span class="o">=</span> <span class="n">scale_range</span>
+
+        <span class="c1"># Classical ML parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perplexity</span> <span class="o">=</span> <span class="n">perplexity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span> <span class="o">=</span> <span class="n">min_dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+
+        <span class="c1"># Training results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_history</span> <span class="o">=</span> <span class="n">training_history</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_loss</span> <span class="o">=</span> <span class="n">final_loss</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs_trained</span> <span class="o">=</span> <span class="n">epochs_trained</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_time</span> <span class="o">=</span> <span class="n">training_time</span>
+
+        <span class="c1"># Data information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_columns</span> <span class="o">=</span> <span class="n">original_columns</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessed_feature_names</span> <span class="o">=</span> <span class="n">preprocessed_feature_names</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_shape</span> <span class="o">=</span> <span class="n">data_shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_types</span> <span class="o">=</span> <span class="n">data_types</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="c1"># Schema validation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expected_schema</span> <span class="o">=</span> <span class="n">expected_schema</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="c1"># Metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row2vec_version</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>  <span class="c1"># This should be imported from package metadata</span>
+
+<div class="viewcode-block" id="Row2VecModelMetadata.to_dict">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecModelMetadata.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert metadata to dictionary for serialization.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="c1"># Training configuration</span>
+            <span class="s2">&quot;embedding_dim&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">,</span>
+            <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+            <span class="s2">&quot;reference_column&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_column</span><span class="p">,</span>
+            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">,</span>
+            <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="s2">&quot;dropout_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_rate</span><span class="p">,</span>
+            <span class="s2">&quot;hidden_units&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_units</span><span class="p">,</span>
+            <span class="s2">&quot;early_stopping&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span><span class="p">,</span>
+            <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
+            <span class="s2">&quot;scale_method&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_method</span><span class="p">,</span>
+            <span class="s2">&quot;scale_range&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_range</span><span class="p">,</span>
+            <span class="c1"># Classical ML parameters</span>
+            <span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
+            <span class="s2">&quot;perplexity&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">perplexity</span><span class="p">,</span>
+            <span class="s2">&quot;min_dist&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span><span class="p">,</span>
+            <span class="s2">&quot;n_iter&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span><span class="p">,</span>
+            <span class="c1"># Training results</span>
+            <span class="s2">&quot;training_history&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_history</span><span class="p">,</span>
+            <span class="s2">&quot;final_loss&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_loss</span><span class="p">,</span>
+            <span class="s2">&quot;epochs_trained&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">epochs_trained</span><span class="p">,</span>
+            <span class="s2">&quot;training_time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_time</span><span class="p">,</span>
+            <span class="c1"># Data information</span>
+            <span class="s2">&quot;original_columns&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_columns</span><span class="p">,</span>
+            <span class="s2">&quot;preprocessed_feature_names&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocessed_feature_names</span><span class="p">,</span>
+            <span class="s2">&quot;data_shape&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_shape</span><span class="p">,</span>
+            <span class="s2">&quot;data_types&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_types</span><span class="p">,</span>
+            <span class="c1"># Schema validation</span>
+            <span class="s2">&quot;expected_schema&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">expected_schema</span><span class="p">,</span>
+            <span class="c1"># Metadata</span>
+            <span class="s2">&quot;created_at&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span>
+            <span class="s2">&quot;row2vec_version&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">row2vec_version</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Row2VecModelMetadata.from_dict">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecModelMetadata.from_dict">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;Row2VecModelMetadata&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create metadata from dictionary.&quot;&quot;&quot;</span>
+        <span class="c1"># Extract only the parameters that the constructor accepts</span>
+        <span class="n">constructor_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;embedding_dim&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;mode&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;reference_column&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;max_epochs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dropout_rate&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hidden_units&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;early_stopping&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;seed&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;scale_method&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;scale_range&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;n_neighbors&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;perplexity&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;min_dist&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;n_iter&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;training_history&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;final_loss&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;epochs_trained&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;training_time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;original_columns&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;preprocessed_feature_names&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data_shape&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data_types&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;expected_schema&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Filter the data to only include constructor parameters</span>
+        <span class="n">filtered_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">constructor_params</span><span class="p">}</span>
+
+        <span class="c1"># Create the instance</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">filtered_data</span><span class="p">)</span>
+
+        <span class="c1"># Set additional fields that are not constructor parameters</span>
+        <span class="k">if</span> <span class="s2">&quot;created_at&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;row2vec_version&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">row2vec_version</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;row2vec_version&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">instance</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Row2VecModel">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecModel">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Row2VecModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Complete Row2Vec model with preprocessing pipeline and metadata.</span>
+
+<span class="sd">    This class encapsulates the trained model, preprocessing pipeline,</span>
+<span class="sd">    and all metadata needed for inference.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="o">|</span> <span class="n">BaseEstimator</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Using Any for Keras models to avoid import issues</span>
+        <span class="n">preprocessor</span><span class="p">:</span> <span class="n">ColumnTransformer</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="n">Row2VecModelMetadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocessor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="n">Row2VecModelMetadata</span><span class="p">(</span>
+            <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="Row2VecModel.validate_input_schema">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecModel.validate_input_schema">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_input_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate input DataFrame schema against expected schema.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df: Input DataFrame to validate</span>
+<span class="sd">            strict: If True, fails on any schema mismatch. If False, warns only.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if schema is valid</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If strict=True and schema validation fails</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">expected_schema</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No expected schema defined in model metadata&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">validate_dataframe_schema</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">expected_schema</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Schema validation failed: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Row2VecModel.predict">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.Row2VecModel.predict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">validate_schema</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate embeddings for new data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df: Input DataFrame</span>
+<span class="sd">            validate_schema: Whether to validate input schema</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DataFrame with embeddings</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If model is not loaded or schema validation fails</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model not loaded. Use Row2VecModel.load() first.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocessor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Preprocessor not loaded. Use Row2VecModel.load() first.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Validate schema if requested</span>
+        <span class="k">if</span> <span class="n">validate_schema</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate_input_schema</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># For classical ML methods, we need to handle them differently</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span> <span class="s2">&quot;umap&quot;</span><span class="p">]:</span>
+            <span class="c1"># Preprocess the data</span>
+            <span class="n">X_processed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+            <span class="c1"># Apply the classical ML model - check if it&#39;s a sklearn estimator</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">):</span>
+                <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_processed</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Classical ML model for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2"> doesn&#39;t support transform&quot;</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Create DataFrame with appropriate column names</span>
+            <span class="n">embedding_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">embeddings</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;embedding_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">)],</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Neural network models (unsupervised, target)</span>
+            <span class="c1"># Preprocess the data (exclude reference column if target mode)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;target&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">reference_column</span><span class="p">:</span>
+                <span class="c1"># For target mode prediction, we use all data but ignore the reference column if present</span>
+                <span class="n">input_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+                    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">reference_column</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">input_df</span> <span class="o">=</span> <span class="n">df</span>
+
+            <span class="n">X_processed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">input_df</span><span class="p">)</span>
+
+            <span class="c1"># Check if model is a Keras model (has the attributes we need)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;get_layer&quot;</span><span class="p">):</span>
+                <span class="c1"># Get embeddings from the encoder part of the model</span>
+                <span class="c1"># Import here to avoid circular imports and typing issues</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span> <span class="k">as</span> <span class="n">KerasModel</span>
+
+                    <span class="c1"># Create encoder from the trained model</span>
+                    <span class="n">encoder</span> <span class="o">=</span> <span class="n">KerasModel</span><span class="p">(</span>
+                        <span class="n">inputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+                        <span class="n">outputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;embedding&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_processed</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Failed to extract embeddings from neural network model: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Neural network model doesn&#39;t have expected Keras structure&quot;</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Create DataFrame</span>
+            <span class="n">embedding_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">embeddings</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;embedding_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">)],</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">embedding_df</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="save_model">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.save_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Row2VecModel</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save a Row2Vec model using the two-file approach.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model: The Row2Vec model to save</span>
+<span class="sd">        base_path: Base path for saving (without extension)</span>
+<span class="sd">        overwrite: Whether to overwrite existing files</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of (script_path, binary_path)</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileExistsError: If files exist and overwrite=False</span>
+<span class="sd">        ValueError: If model is incomplete</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">base_path</span><span class="p">)</span>
+    <span class="n">script_path</span> <span class="o">=</span> <span class="n">base_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">)</span>
+    <span class="n">binary_path</span> <span class="o">=</span> <span class="n">base_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.pkl&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check for existing files</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">overwrite</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">script_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileExistsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Script file already exists: </span><span class="si">{</span><span class="n">script_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">binary_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileExistsError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Binary file already exists: </span><span class="si">{</span><span class="n">binary_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Validate model completeness</span>
+    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Model cannot be None&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">preprocessor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Preprocessor cannot be None&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Metadata cannot be None&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Save binary components (model + preprocessor)</span>
+    <span class="n">binary_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+        <span class="s2">&quot;preprocessor&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">preprocessor</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">binary_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">binary_data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="c1"># Generate Python script with metadata and loading logic</span>
+    <span class="n">script_content</span> <span class="o">=</span> <span class="n">_generate_model_script</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="n">binary_path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">script_content</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">script_path</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">binary_path</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_model">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.load_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_model</span><span class="p">(</span><span class="n">script_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Row2VecModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a Row2Vec model from the script file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        script_path: Path to the Python script file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Loaded Row2Vec model</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If script or binary file not found</span>
+<span class="sd">        ValueError: If loading fails</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">script_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">script_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Script file not found: </span><span class="si">{</span><span class="n">script_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Execute the script in a controlled namespace</span>
+    <span class="c1"># Add the script directory to help find the binary file</span>
+    <span class="n">namespace</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__script_dir__&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">script_path</span><span class="o">.</span><span class="n">parent</span><span class="p">),</span>
+        <span class="s2">&quot;__script_path__&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">script_path</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">script_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="n">namespace</span><span class="p">)</span>
+
+    <span class="c1"># Get the load function from the script</span>
+    <span class="k">if</span> <span class="s2">&quot;load_model&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">namespace</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Script does not contain load_model function&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load the model</span>
+    <span class="k">return</span> <span class="n">namespace</span><span class="p">[</span><span class="s2">&quot;load_model&quot;</span><span class="p">]()</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_generate_model_script</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="n">Row2VecModelMetadata</span><span class="p">,</span> <span class="n">binary_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate the Python script for model loading.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        metadata: Model metadata</span>
+<span class="sd">        binary_filename: Name of the binary file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Python script content as string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Convert metadata to JSON for inclusion in script, handling None values</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">json_serializer</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom JSON serializer to handle None and other Python objects.&quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="n">metadata_dict</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="c1"># Convert None values and handle NaN values</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metadata_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">metadata_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Keep as Python None</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                <span class="n">metadata_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metadata_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># Use Python repr instead of JSON to handle None values properly</span>
+    <span class="n">metadata_repr</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">metadata_dict</span><span class="p">)</span>
+
+    <span class="c1"># Handle potential NaN values in metadata for f-string formatting</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">safe_format</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Not recorded&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;Not recorded&quot;</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;&quot;&quot;&quot;</span>
+<span class="s1">Row2Vec Model: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s1"> mode, </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s1">D embeddings</span>
+<span class="s1">Created: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">created_at</span><span class="si">}</span>
+<span class="s1">Row2Vec Version: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">row2vec_version</span><span class="si">}</span>
+
+<span class="s1">This script contains the metadata and loading logic for a trained Row2Vec model.</span>
+<span class="s1">The actual model weights and preprocessor are stored in the accompanying binary file.</span>
+
+<span class="s1">Training Configuration:</span>
+<span class="s1">- Mode: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span>
+<span class="s1">- Embedding Dimensions: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span>
+<span class="s1">- Reference Column: </span><span class="si">{</span><span class="n">safe_format</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">reference_column</span><span class="p">)</span><span class="si">}</span>
+<span class="s1">- Epochs Trained: </span><span class="si">{</span><span class="n">safe_format</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">epochs_trained</span><span class="p">)</span><span class="si">}</span>
+<span class="s1">- Final Loss: </span><span class="si">{</span><span class="n">safe_format</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">final_loss</span><span class="p">)</span><span class="si">}</span>
+<span class="s1">- Training Time: </span><span class="si">{</span><span class="n">safe_format</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">training_time</span><span class="p">)</span><span class="si">}</span><span class="s1">s</span>
+
+<span class="s1">Data Information:</span>
+<span class="s1">- Original Shape: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">data_shape</span><span class="si">}</span>
+<span class="s1">- Original Columns: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">original_columns</span><span class="p">)</span><span class="si">}</span><span class="s1"> columns</span>
+<span class="s1">- Preprocessed Features: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">preprocessed_feature_names</span><span class="p">)</span><span class="si">}</span><span class="s1"> features</span>
+
+<span class="s1">Usage:</span>
+<span class="s1">    from pathlib import Path</span>
+<span class="s1">    model = load_model()  # This function is defined below</span>
+<span class="s1">    embeddings = model.predict(your_dataframe)</span>
+<span class="s1">&quot;&quot;&quot;</span>
+
+<span class="s1">import pickle</span>
+<span class="s1">import numpy as np</span>
+<span class="s1">from pathlib import Path</span>
+<span class="s1">from typing import Any, Dict</span>
+
+<span class="s1"># Import Row2Vec components (assumes row2vec is installed)</span>
+<span class="s1">try:</span>
+<span class="s1">    from row2vec.serialization import Row2VecModel, Row2VecModelMetadata</span>
+<span class="s1">except ImportError:</span>
+<span class="s1">    raise ImportError(</span>
+<span class="s1">        &quot;row2vec package not found. Please install it first: pip install row2vec&quot;</span>
+<span class="s1">    )</span>
+
+
+<span class="s1"># Model metadata (inspectable dictionary)</span>
+<span class="s1">METADATA = </span><span class="si">{</span><span class="n">metadata_repr</span><span class="si">}</span>
+
+
+<span class="s1">def get_metadata() -&gt; Dict[str, Any]:</span>
+<span class="s1">    &quot;&quot;&quot;Get the model metadata as an inspectable dictionary.&quot;&quot;&quot;</span>
+<span class="s1">    return METADATA.copy()</span>
+
+
+<span class="s1">def load_model() -&gt; Row2VecModel:</span>
+<span class="s1">    &quot;&quot;&quot;</span>
+<span class="s1">    Load the complete Row2Vec model with preprocessor and metadata.</span>
+
+<span class="s1">    Returns:</span>
+<span class="s1">        Row2VecModel: Loaded model ready for inference</span>
+
+<span class="s1">    Raises:</span>
+<span class="s1">        FileNotFoundError: If binary file not found</span>
+<span class="s1">        Exception: If loading fails</span>
+<span class="s1">    &quot;&quot;&quot;</span>
+<span class="s1">    # Get the path to the binary file using the script directory</span>
+<span class="s1">    binary_filename = &quot;</span><span class="si">{</span><span class="n">binary_filename</span><span class="si">}</span><span class="s1">&quot;</span>
+
+<span class="s1">    # Try to use the script directory if available (passed from load_model function)</span>
+<span class="s1">    if &quot;__script_dir__&quot; in globals():</span>
+<span class="s1">        script_dir = Path(globals()[&quot;__script_dir__&quot;])</span>
+<span class="s1">        binary_path = script_dir / binary_filename</span>
+<span class="s1">    else:</span>
+<span class="s1">        # Fallback to current working directory</span>
+<span class="s1">        binary_path = Path(binary_filename)</span>
+
+<span class="s1">    if not binary_path.exists():</span>
+<span class="s1">        raise FileNotFoundError(</span>
+<span class="s1">            f&quot;Binary model file not found: </span><span class="se">{{</span><span class="s1">binary_path</span><span class="se">}}\\</span><span class="s1">n&quot;</span>
+<span class="s1">            f&quot;Expected filename: </span><span class="se">{{</span><span class="s1">binary_filename</span><span class="se">}}\\</span><span class="s1">n&quot;</span>
+<span class="s1">            f&quot;Searched in: </span><span class="se">{{</span><span class="s1">binary_path.parent if binary_path.parent != binary_path else Path.cwd()</span><span class="se">}}</span><span class="s1">&quot;</span>
+<span class="s1">        )</span>
+
+<span class="s1">    try:</span>
+<span class="s1">        # Load binary components</span>
+<span class="s1">        with open(binary_path, &quot;rb&quot;) as f:</span>
+<span class="s1">            binary_data = pickle.load(f)</span>
+
+<span class="s1">        # Create metadata object</span>
+<span class="s1">        metadata = Row2VecModelMetadata.from_dict(METADATA)</span>
+
+<span class="s1">        # Create and return model</span>
+<span class="s1">        model = Row2VecModel(</span>
+<span class="s1">            model=binary_data[&quot;model&quot;],</span>
+<span class="s1">            preprocessor=binary_data[&quot;preprocessor&quot;],</span>
+<span class="s1">            metadata=metadata,</span>
+<span class="s1">        )</span>
+
+<span class="s1">        return model</span>
+
+<span class="s1">    except Exception as e:</span>
+<span class="s1">        raise Exception(f&quot;Failed to load model: </span><span class="se">{{</span><span class="s1">str(e)</span><span class="se">}}</span><span class="s1">&quot;)</span>
+
+
+<span class="s1">if __name__ == &quot;__main__&quot;:</span>
+<span class="s1">    # Demo usage</span>
+<span class="s1">    print(&quot;Row2Vec Model Information:&quot;)</span>
+<span class="s1">    print(&quot;=&quot; * 50)</span>
+
+<span class="s1">    metadata = get_metadata()</span>
+<span class="s1">    print(f&quot;Mode: </span><span class="se">{{</span><span class="s1">metadata[&#39;mode&#39;]</span><span class="se">}}</span><span class="s1">&quot;)</span>
+<span class="s1">    print(f&quot;Embedding Dimensions: </span><span class="se">{{</span><span class="s1">metadata[&#39;embedding_dim&#39;]</span><span class="se">}}</span><span class="s1">&quot;)</span>
+<span class="s1">    print(f&quot;Created: </span><span class="se">{{</span><span class="s1">metadata[&#39;created_at&#39;]</span><span class="se">}}</span><span class="s1">&quot;)</span>
+<span class="s1">    print(f&quot;Training Time: </span><span class="se">{{</span><span class="s1">metadata.get(&#39;training_time&#39;, &#39;N/A&#39;)</span><span class="se">}}</span><span class="s1">s&quot;)</span>
+<span class="s1">    print(f&quot;Final Loss: </span><span class="se">{{</span><span class="s1">metadata.get(&#39;final_loss&#39;, &#39;N/A&#39;)</span><span class="se">}}</span><span class="s1">&quot;)</span>
+<span class="s1">    print(f&quot;Epochs Trained: </span><span class="se">{{</span><span class="s1">metadata.get(&#39;epochs_trained&#39;, &#39;N/A&#39;)</span><span class="se">}}</span><span class="s1">&quot;)</span>
+
+<span class="s1">    print(&quot;</span><span class="se">\\</span><span class="s1">nOriginal Columns:&quot;)</span>
+<span class="s1">    for col in metadata.get(&#39;original_columns&#39;, []):</span>
+<span class="s1">        print(f&quot;  - </span><span class="se">{{</span><span class="s1">col</span><span class="se">}}</span><span class="s1">&quot;)</span>
+
+<span class="s1">    print(&quot;</span><span class="se">\\</span><span class="s1">nTo use this model:&quot;)</span>
+<span class="s1">    print(&quot;  model = load_model()&quot;)</span>
+<span class="s1">    print(&quot;  embeddings = model.predict(your_dataframe)&quot;)</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+
+<div class="viewcode-block" id="train_and_save_model">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.train_and_save_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">train_and_save_model</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="c1"># All learn_embedding parameters</span>
+    <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">reference_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="n">dropout_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+    <span class="n">early_stopping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1305</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">scale_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">scale_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+    <span class="n">log_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">enable_logging</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="n">perplexity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+    <span class="n">min_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">n_iter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="c1"># Contrastive learning parameters</span>
+    <span class="n">similar_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dissimilar_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">auto_pairs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">negative_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">contrastive_loss</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;triplet&quot;</span><span class="p">,</span>
+    <span class="n">margin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="c1"># Serialization parameters</span>
+    <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">include_training_history</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Train a Row2Vec model and save it using the two-file approach.</span>
+
+<span class="sd">    This is a convenience function that combines training and saving.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: Input DataFrame for training</span>
+<span class="sd">        base_path: Base path for saving the model</span>
+<span class="sd">        **kwargs: All parameters from learn_embedding</span>
+<span class="sd">        overwrite: Whether to overwrite existing model files</span>
+<span class="sd">        include_training_history: Whether to include full training history in metadata</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of (embeddings, script_path, binary_path)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Import here to avoid circular imports</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding_with_model</span>
+
+    <span class="c1"># Train the model and get all components</span>
+    <span class="n">embeddings</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">learn_embedding_with_model</span><span class="p">(</span>
+        <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+        <span class="n">reference_column</span><span class="o">=</span><span class="n">reference_column</span><span class="p">,</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="n">max_epochs</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">dropout_rate</span><span class="o">=</span><span class="n">dropout_rate</span><span class="p">,</span>
+        <span class="n">hidden_units</span><span class="o">=</span><span class="n">hidden_units</span><span class="p">,</span>
+        <span class="n">early_stopping</span><span class="o">=</span><span class="n">early_stopping</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="n">scale_method</span><span class="o">=</span><span class="n">scale_method</span><span class="p">,</span>
+        <span class="n">scale_range</span><span class="o">=</span><span class="n">scale_range</span><span class="p">,</span>
+        <span class="n">log_level</span><span class="o">=</span><span class="n">log_level</span><span class="p">,</span>
+        <span class="n">log_file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span>
+        <span class="n">enable_logging</span><span class="o">=</span><span class="n">enable_logging</span><span class="p">,</span>
+        <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+        <span class="n">perplexity</span><span class="o">=</span><span class="n">perplexity</span><span class="p">,</span>
+        <span class="n">min_dist</span><span class="o">=</span><span class="n">min_dist</span><span class="p">,</span>
+        <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">,</span>
+        <span class="c1"># Contrastive learning parameters</span>
+        <span class="n">similar_pairs</span><span class="o">=</span><span class="n">similar_pairs</span><span class="p">,</span>
+        <span class="n">dissimilar_pairs</span><span class="o">=</span><span class="n">dissimilar_pairs</span><span class="p">,</span>
+        <span class="n">auto_pairs</span><span class="o">=</span><span class="n">auto_pairs</span><span class="p">,</span>
+        <span class="n">negative_samples</span><span class="o">=</span><span class="n">negative_samples</span><span class="p">,</span>
+        <span class="n">contrastive_loss</span><span class="o">=</span><span class="n">contrastive_loss</span><span class="p">,</span>
+        <span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Optionally remove training history to reduce file size</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">include_training_history</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;training_history&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Create Row2VecModel</span>
+    <span class="n">row2vec_model</span> <span class="o">=</span> <span class="n">Row2VecModel</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">preprocessor</span><span class="o">=</span><span class="n">preprocessor</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="n">Row2VecModelMetadata</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">metadata</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Save the model</span>
+    <span class="n">script_path</span><span class="p">,</span> <span class="n">binary_path</span> <span class="o">=</span> <span class="n">save_model</span><span class="p">(</span><span class="n">row2vec_model</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">script_path</span><span class="p">,</span> <span class="n">binary_path</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

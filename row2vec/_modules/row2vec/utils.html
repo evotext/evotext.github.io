@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>row2vec.utils &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/row2vec/utils';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/_modules/row2vec/utils.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for row2vec.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Row2Vec: Utility functions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="generate_synthetic_data">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.generate_synthetic_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_synthetic_data</span><span class="p">(</span><span class="n">num_records</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1305</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a synthetic DataFrame for demonstration purposes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num_records (int): The number of records to generate.</span>
+<span class="sd">        seed (int): A random seed for reproducibility.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: A synthetic DataFrame with mixed data types.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">countries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;USA&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">,</span> <span class="s2">&quot;Mexico&quot;</span><span class="p">,</span> <span class="s2">&quot;Brazil&quot;</span><span class="p">,</span> <span class="s2">&quot;Italy&quot;</span><span class="p">]</span>
+    <span class="n">products</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">]</span>
+
+    <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_records</span><span class="p">):</span>
+        <span class="n">country</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+        <span class="n">product</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
+
+        <span class="n">sales</span><span class="p">:</span> <span class="nb">float</span>
+        <span class="k">if</span> <span class="n">country</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;USA&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">]:</span>
+            <span class="n">sales</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sales</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span>
+            <span class="p">)</span>
+
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;Country&quot;</span><span class="p">:</span> <span class="n">country</span><span class="p">,</span> <span class="s2">&quot;Product&quot;</span><span class="p">:</span> <span class="n">product</span><span class="p">,</span> <span class="s2">&quot;Sales&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sales</span><span class="p">)})</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="create_dataframe_schema">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.create_dataframe_schema">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_dataframe_schema</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a schema dictionary from a DataFrame for validation purposes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: DataFrame to analyze</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary containing schema information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+        <span class="s2">&quot;dtypes&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+        <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="s2">&quot;nullable_columns&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Add categorical information for object columns</span>
+    <span class="n">categorical_info</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;category&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">unique_values</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_values</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">50</span><span class="p">:</span>  <span class="c1"># Only store if reasonable number of categories</span>
+            <span class="n">categorical_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">unique_values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">categorical_info</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Too many categories: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">categorical_info</span><span class="p">:</span>
+        <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;categorical_info&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">categorical_info</span>
+
+    <span class="k">return</span> <span class="n">schema</span></div>
+
+
+
+<div class="viewcode-block" id="validate_dataframe_schema">
+<a class="viewcode-back" href="../../api_reference.html#row2vec.validate_dataframe_schema">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_dataframe_schema</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">expected_schema</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">allow_extra_columns</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_missing_columns</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate DataFrame schema against expected schema.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: DataFrame to validate</span>
+<span class="sd">        expected_schema: Expected schema dictionary</span>
+<span class="sd">        allow_extra_columns: Whether to allow extra columns in df</span>
+<span class="sd">        allow_missing_columns: Whether to allow missing columns in df</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If schema validation fails</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected pandas DataFrame, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;DataFrame cannot be empty&quot;</span><span class="p">)</span>
+
+    <span class="n">expected_columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">expected_schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="n">actual_columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Check for missing columns</span>
+    <span class="n">missing_columns</span> <span class="o">=</span> <span class="n">expected_columns</span> <span class="o">-</span> <span class="n">actual_columns</span>
+    <span class="k">if</span> <span class="n">missing_columns</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">allow_missing_columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing required columns: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">missing_columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check for extra columns</span>
+    <span class="n">extra_columns</span> <span class="o">=</span> <span class="n">actual_columns</span> <span class="o">-</span> <span class="n">expected_columns</span>
+    <span class="k">if</span> <span class="n">extra_columns</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">allow_extra_columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected columns found: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">extra_columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check data types for common columns</span>
+    <span class="n">common_columns</span> <span class="o">=</span> <span class="n">expected_columns</span> <span class="o">&amp;</span> <span class="n">actual_columns</span>
+    <span class="n">expected_dtypes</span> <span class="o">=</span> <span class="n">expected_schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dtypes&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">common_columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">expected_dtypes</span><span class="p">:</span>
+            <span class="n">expected_dtype</span> <span class="o">=</span> <span class="n">expected_dtypes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+            <span class="n">actual_dtype</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+            <span class="c1"># Allow some flexibility in numeric types</span>
+            <span class="k">if</span> <span class="n">_are_compatible_dtypes</span><span class="p">(</span><span class="n">expected_dtype</span><span class="p">,</span> <span class="n">actual_dtype</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">expected_dtype</span> <span class="o">!=</span> <span class="n">actual_dtype</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Column &#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&#39; has incorrect type. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Expected: </span><span class="si">{</span><span class="n">expected_dtype</span><span class="si">}</span><span class="s2">, got: </span><span class="si">{</span><span class="n">actual_dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_are_compatible_dtypes</span><span class="p">(</span><span class="n">expected</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if two data types are compatible for schema validation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        expected: Expected data type string</span>
+<span class="sd">        actual: Actual data type string</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if types are compatible</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Numeric type compatibility</span>
+    <span class="n">numeric_types</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uint16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uint32&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uint64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># If both are numeric, they&#39;re compatible</span>
+    <span class="k">if</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">numeric_types</span> <span class="ow">and</span> <span class="n">actual</span> <span class="ow">in</span> <span class="n">numeric_types</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1"># Object and string types are compatible</span>
+    <span class="n">string_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;string&quot;</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">string_types</span> <span class="ow">and</span> <span class="n">actual</span> <span class="ow">in</span> <span class="n">string_types</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1"># Exact match</span>
+    <span class="k">return</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">actual</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

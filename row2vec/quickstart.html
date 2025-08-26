@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quickstart Guide &#8212; Row2Vec Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'quickstart';</script>
+    <link rel="canonical" href="https://evotext.github.io/row2vec/quickstart.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Titanic Dataset Example" href="titanic_example.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Row2Vec Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="titanic_example.html">Titanic Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adult_example.html">Adult Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="housing_example.html">Boston Housing Dataset Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_features.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_guide.html">Command-Line Interface Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoretical_foundation.html">Theoretical Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/quickstart.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Quickstart Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-embeddings">Unsupervised Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-based-embeddings">Target-Based Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-methods">Classical Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-fast-linear-reduction">PCA (Fast Linear Reduction)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-sne-visualization">t-SNE (Visualization)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umap-balanced-approach">UMAP (Balanced Approach)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-embeddings">Scaling Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values">Handling Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-and-load-models">Save and Load Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command-Line Interface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-comparison">Method Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-selection-guide">Method Selection Guide</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-each-method">When to Use Each Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quickstart-guide">
+<h1>Quickstart Guide<a class="headerlink" href="#quickstart-guide" title="Link to this heading">#</a></h1>
+<p>Get started with Row2Vec in 5 minutes! This guide shows the essential features through executable examples.</p>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h2>
+<p>The core of Row2Vec is the <code class="docutils literal notranslate"><span class="pre">learn_embedding()</span></code> function:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import complete suppression first</span>
+<span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;suppress_minimal.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">learn_embedding</span><span class="p">,</span> <span class="n">generate_synthetic_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Generate sample data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">generate_synthetic_data</span><span class="p">(</span><span class="n">num_records</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unsupervised-embeddings">
+<h2>Unsupervised Embeddings<a class="headerlink" href="#unsupervised-embeddings" title="Link to this heading">#</a></h2>
+<p>Create compressed representations of each row:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learn 5-dimensional embeddings for each row</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Embeddings shape: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First 3 embeddings:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify: each row gets an embedding</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Embeddings: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dimensions per embedding: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="target-based-embeddings">
+<h2>Target-Based Embeddings<a class="headerlink" href="#target-based-embeddings" title="Link to this heading">#</a></h2>
+<p>Learn embeddings for categorical column values:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learn embeddings for each country</span>
+<span class="n">country_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span>
+    <span class="n">reference_column</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Country embeddings:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">country_embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classical-methods">
+<h2>Classical Methods<a class="headerlink" href="#classical-methods" title="Link to this heading">#</a></h2>
+<p>Row2Vec also provides classical dimensionality reduction:</p>
+<section id="pca-fast-linear-reduction">
+<h3>PCA (Fast Linear Reduction)<a class="headerlink" href="#pca-fast-linear-reduction" title="Link to this heading">#</a></h3>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PCA embeddings (first 5):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pca_embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="t-sne-visualization">
+<h3>t-SNE (Visualization)<a class="headerlink" href="#t-sne-visualization" title="Link to this heading">#</a></h3>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsne_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;tsne&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">perplexity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;t-SNE embeddings (first 5):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tsne_embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="umap-balanced-approach">
+<h3>UMAP (Balanced Approach)<a class="headerlink" href="#umap-balanced-approach" title="Link to this heading">#</a></h3>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">umap_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;umap&quot;</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UMAP embeddings (first 5):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">umap_embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UMAP not installed. Install with: pip install umap-learn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scaling-embeddings">
+<h2>Scaling Embeddings<a class="headerlink" href="#scaling-embeddings" title="Link to this heading">#</a></h2>
+<p>Apply post-processing scaling to embeddings:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scale embeddings to [-1, 1] range</span>
+<span class="n">scaled_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">scale_method</span><span class="o">=</span><span class="s2">&quot;minmax&quot;</span><span class="p">,</span>
+    <span class="n">scale_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scaled embeddings statistics:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Min value: </span><span class="si">{</span><span class="n">scaled_embeddings</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max value: </span><span class="si">{</span><span class="n">scaled_embeddings</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First 3 scaled embeddings:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scaled_embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-missing-values">
+<h2>Handling Missing Values<a class="headerlink" href="#handling-missing-values" title="Link to this heading">#</a></h2>
+<p>Row2Vec automatically handles missing values:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create data with missing values</span>
+<span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sales&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;Product&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing values introduced: </span><span class="si">{</span><span class="n">df_missing</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Row2Vec handles this automatically</span>
+<span class="n">embeddings_missing</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
+    <span class="n">df_missing</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+    <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Embeddings generated: </span><span class="si">{</span><span class="n">embeddings_missing</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No errors - missing values handled automatically!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-and-load-models">
+<h2>Save and Load Models<a class="headerlink" href="#save-and-load-models" title="Link to this heading">#</a></h2>
+<p>Train once, use many times:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_and_save_model</span><span class="p">,</span> <span class="n">load_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Create temporary directory for demo</span>
+<span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
+    <span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="s2">&quot;my_model&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Train and save model</span>
+    <span class="n">embeddings</span><span class="p">,</span> <span class="n">script_path</span><span class="p">,</span> <span class="n">binary_path</span> <span class="o">=</span> <span class="n">train_and_save_model</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">base_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">,</span>
+        <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model saved to: </span><span class="si">{</span><span class="n">script_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load and use model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+
+    <span class="c1"># Generate embeddings for new data</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">generate_synthetic_data</span><span class="p">(</span><span class="n">num_records</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+    <span class="n">new_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">New embeddings shape: </span><span class="si">{</span><span class="n">new_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model successfully loaded and used!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="command-line-interface">
+<h2>Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">#</a></h2>
+<p>Row2Vec also provides a CLI for batch processing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick embeddings</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># With configuration</span>
+row2vec<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mode<span class="w"> </span>unsupervised<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>embeddings.csv
+
+<span class="c1"># Train and save model</span>
+row2vec-train<span class="w"> </span>data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dimensions<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>model.pkl
+
+<span class="c1"># Apply saved model</span>
+row2vec-embed<span class="w"> </span>new_data.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>new_embeddings.csv
+</pre></div>
+</div>
+</section>
+<section id="method-comparison">
+<h2>Method Comparison<a class="headerlink" href="#method-comparison" title="Link to this heading">#</a></h2>
+<p>Let’s compare all methods on the same data:</p>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">methods</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Neural&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span> <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+    <span class="s2">&quot;PCA&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;pca&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;t-SNE&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span> <span class="s2">&quot;perplexity&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">methods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">emb</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">elapsed</span><span class="p">,</span>
+        <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">emb</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="s2">&quot;std&quot;</span><span class="p">:</span> <span class="n">emb</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Method Comparison:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">stats</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">:</span><span class="s2">10</span><span class="si">}</span><span class="s2"> | Time: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s | Mean: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">6.3f</span><span class="si">}</span><span class="s2"> | Std: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">5.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="method-selection-guide">
+<h2>Method Selection Guide<a class="headerlink" href="#method-selection-guide" title="Link to this heading">#</a></h2>
+<p>Each embedding method has different strengths. Here’s when to use each:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Speed</p></th>
+<th class="head"><p>Deterministic</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Embedding Range</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Neural</strong></p></td>
+<td><p>Medium</p></td>
+<td><p>Yes (with seed)</p></td>
+<td><p>Complex patterns, feature engineering</p></td>
+<td><p>Typically [-1, 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PCA</strong></p></td>
+<td><p>Fast</p></td>
+<td><p>Yes</p></td>
+<td><p>Quick dimensionality reduction, linear relationships</p></td>
+<td><p>Variable scale</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>t-SNE</strong></p></td>
+<td><p>Slow</p></td>
+<td><p>No*</p></td>
+<td><p>2D/3D visualization, cluster discovery</p></td>
+<td><p>Large range, clustered</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>UMAP</strong></p></td>
+<td><p>Fast</p></td>
+<td><p>Yes (with seed)</p></td>
+<td><p>General purpose, balanced local/global structure</p></td>
+<td><p>Moderate range</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>*t-SNE can be made more deterministic with proper seeding, but still has some inherent randomness.</p>
+<section id="when-to-use-each-method">
+<h3>When to Use Each Method<a class="headerlink" href="#when-to-use-each-method" title="Link to this heading">#</a></h3>
+<p><strong>Choose Neural Networks (<code class="docutils literal notranslate"><span class="pre">mode=&quot;unsupervised&quot;</span></code>) when:</strong></p>
+<ul class="simple">
+<li><p>You need embeddings for downstream machine learning models</p></li>
+<li><p>Your data has complex, non-linear relationships</p></li>
+<li><p>You want features that can capture intricate patterns</p></li>
+<li><p>You have sufficient training time and computational resources</p></li>
+</ul>
+<p><strong>Choose PCA (<code class="docutils literal notranslate"><span class="pre">mode=&quot;pca&quot;</span></code>) when:</strong></p>
+<ul class="simple">
+<li><p>You need fast, deterministic results</p></li>
+<li><p>Your data relationships are primarily linear</p></li>
+<li><p>You want interpretable principal components</p></li>
+<li><p>You’re preprocessing data for other algorithms</p></li>
+</ul>
+<p><strong>Choose t-SNE (<code class="docutils literal notranslate"><span class="pre">mode=&quot;tsne&quot;</span></code>) when:</strong></p>
+<ul class="simple">
+<li><p>You want to visualize data in 2D or 3D</p></li>
+<li><p>Discovering clusters is your primary goal</p></li>
+<li><p>Local neighborhood preservation is most important</p></li>
+<li><p>You don’t mind longer computation times</p></li>
+</ul>
+<p><strong>Choose UMAP (<code class="docutils literal notranslate"><span class="pre">mode=&quot;umap&quot;</span></code>) when:</strong></p>
+<ul class="simple">
+<li><p>You want general-purpose dimensionality reduction</p></li>
+<li><p>You need both local and global structure preserved</p></li>
+<li><p>You want faster performance than t-SNE</p></li>
+<li><p>You’re working with higher-dimensional outputs (&gt;3D)</p></li>
+</ul>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Now you know the basics! For more detailed examples:</p>
+<ul class="simple">
+<li><p>📊 <a class="reference internal" href="titanic_example.html"><span class="std std-doc">Titanic Example</span></a> - Complete walkthrough with real data</p></li>
+<li><p>🏠 <a class="reference internal" href="housing_example.html"><span class="std std-doc">Housing Example</span></a> - Regression features</p></li>
+<li><p>🎯 <a class="reference internal" href="advanced_features.html"><span class="std std-doc">Advanced Features</span></a> - Neural architecture search, imputation</p></li>
+<li><p>💻 <a class="reference internal" href="cli_guide.html"><span class="std std-doc">CLI Guide</span></a> - Command-line workflows</p></li>
+<li><p>📚 <a class="reference internal" href="api_reference.html"><span class="std std-doc">API Reference</span></a> - Complete documentation</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="titanic_example.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Titanic Dataset Example</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-embeddings">Unsupervised Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-based-embeddings">Target-Based Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-methods">Classical Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-fast-linear-reduction">PCA (Fast Linear Reduction)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-sne-visualization">t-SNE (Visualization)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umap-balanced-approach">UMAP (Balanced Approach)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-embeddings">Scaling Embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values">Handling Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-and-load-models">Save and Load Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command-Line Interface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-comparison">Method Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-selection-guide">Method Selection Guide</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-each-method">When to Use Each Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tiago Tresoldi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
