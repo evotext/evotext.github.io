@@ -355,7 +355,7 @@ document.write(`
 <h2>Load and Explore Data<a class="headerlink" href="#load-and-explore-data" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import complete suppression first</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import complete suppression first</span>
 <span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;suppress_minimal.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -372,19 +372,54 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✓ Enhanced minimal suppression active
+</pre></div>
 </div>
-<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preview the data</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 records:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset shape: (48842, 15)
+
+Columns: [&#39;age&#39;, &#39;workclass&#39;, &#39;fnlwgt&#39;, &#39;education&#39;, &#39;education-num&#39;, &#39;marital-status&#39;, &#39;occupation&#39;, &#39;relationship&#39;, &#39;race&#39;, &#39;sex&#39;, &#39;capital-gain&#39;, &#39;capital-loss&#39;, &#39;hours-per-week&#39;, &#39;native-country&#39;, &#39;income&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for high-cardinality categoricals</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preview the data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 records:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First 5 records:
+   age         workclass  fnlwgt  education  education-num  \
+0   39         State-gov   77516  Bachelors             13   
+1   50  Self-emp-not-inc   83311  Bachelors             13   
+2   38           Private  215646    HS-grad              9   
+3   53           Private  234721       11th              7   
+4   28           Private  338409  Bachelors             13   
+
+       marital-status         occupation   relationship   race     sex  \
+0       Never-married       Adm-clerical  Not-in-family  White    Male   
+1  Married-civ-spouse    Exec-managerial        Husband  White    Male   
+2            Divorced  Handlers-cleaners  Not-in-family  White    Male   
+3  Married-civ-spouse  Handlers-cleaners        Husband  Black    Male   
+4  Married-civ-spouse     Prof-specialty           Wife  Black  Female   
+
+   capital-gain  capital-loss  hours-per-week native-country income  
+0          2174             0              40  United-States  &lt;=50K  
+1             0             0              13  United-States  &lt;=50K  
+2             0             0              40  United-States  &lt;=50K  
+3             0             0              40  United-States  &lt;=50K  
+4             0             0              40           Cuba  &lt;=50K  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-stderr tag_remove-warnings docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for high-cardinality categoricals</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Categorical column cardinalities:&quot;</span><span class="p">)</span>
 <span class="n">categorical_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_cols</span><span class="p">:</span>
@@ -395,13 +430,33 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Categorical column cardinalities:
+  workclass: 8 unique values
+    Values: [&#39;State-gov&#39;, &#39;Self-emp-not-inc&#39;, &#39;Private&#39;, &#39;Federal-gov&#39;, &#39;Local-gov&#39;, nan, &#39;Self-emp-inc&#39;, &#39;Without-pay&#39;, &#39;Never-worked&#39;]
+  education: 16 unique values
+  marital-status: 7 unique values
+    Values: [&#39;Never-married&#39;, &#39;Married-civ-spouse&#39;, &#39;Divorced&#39;, &#39;Married-spouse-absent&#39;, &#39;Separated&#39;, &#39;Married-AF-spouse&#39;, &#39;Widowed&#39;]
+  occupation: 14 unique values
+  relationship: 6 unique values
+    Values: [&#39;Not-in-family&#39;, &#39;Husband&#39;, &#39;Wife&#39;, &#39;Own-child&#39;, &#39;Unmarried&#39;, &#39;Other-relative&#39;]
+  race: 5 unique values
+    Values: [&#39;White&#39;, &#39;Black&#39;, &#39;Asian-Pac-Islander&#39;, &#39;Amer-Indian-Eskimo&#39;, &#39;Other&#39;]
+  sex: 2 unique values
+    Values: [&#39;Male&#39;, &#39;Female&#39;]
+  native-country: 41 unique values
+  income: 2 unique values
+    Values: [&#39;&lt;=50K&#39;, &#39;&gt;50K&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="data-preprocessing">
 <h2>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove columns not useful for general embeddings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove columns not useful for general embeddings</span>
 <span class="n">cols_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fnlwgt&#39;</span><span class="p">,</span> <span class="s1">&#39;education-num&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">]</span>  <span class="c1"># fnlwgt is just a weight, education-num duplicates education</span>
 <span class="n">df_features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols_to_drop</span><span class="p">)</span>
 
@@ -418,6 +473,18 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Features for embedding: [&#39;age&#39;, &#39;workclass&#39;, &#39;education&#39;, &#39;marital-status&#39;, &#39;occupation&#39;, &#39;relationship&#39;, &#39;race&#39;, &#39;sex&#39;, &#39;capital-gain&#39;, &#39;capital-loss&#39;, &#39;hours-per-week&#39;, &#39;native-country&#39;]
+Shape: (48842, 12)
+
+Missing values:
+workclass         2799
+occupation        2809
+native-country     857
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="unsupervised-embeddings">
@@ -425,7 +492,7 @@ document.write(`
 <p>Generate embeddings for the entire dataset:</p>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample for faster demo (remove sampling for full dataset)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample for faster demo (remove sampling for full dataset)</span>
 <span class="n">df_sample</span> <span class="o">=</span> <span class="n">df_features</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Working with sample of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sample</span><span class="p">)</span><span class="si">}</span><span class="s2"> records&quot;</span><span class="p">)</span>
 
@@ -448,6 +515,61 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Working with sample of 5000 records
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)        │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">101</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">26,112</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">10</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">2,570</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)            │         <span style="color: #00af00; text-decoration-color: #00af00">2,816</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">101</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">25,957</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">57,455</span> (224.43 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">57,455</span> (224.43 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Embeddings shape: (5000, 10)
+
+Embedding statistics:
+       embedding_0  embedding_1  embedding_2  embedding_3  embedding_4  \
+count     5000.000     5000.000     5000.000     5000.000     5000.000   
+mean         0.038       -0.075       -0.226       -0.087        0.187   
+std          0.595        0.610        0.803        0.716        0.645   
+min         -1.361       -3.390       -2.058       -1.871       -1.846   
+25%         -0.374       -0.437       -0.829       -0.612       -0.213   
+50%         -0.015       -0.017       -0.280       -0.049        0.154   
+75%          0.403        0.344        0.329        0.428        0.512   
+max          2.831        1.868        6.003        1.970        6.058   
+
+       embedding_5  embedding_6  embedding_7  embedding_8  embedding_9  
+count     5000.000     5000.000     5000.000     5000.000     5000.000  
+mean        -0.028        0.067       -0.085        0.046        0.101  
+std          0.751        0.672        0.668        0.586        0.645  
+min         -2.666       -3.178       -3.595       -3.724       -1.519  
+25%         -0.515       -0.300       -0.448       -0.256       -0.361  
+50%         -0.070        0.031       -0.045        0.087        0.028  
+75%          0.414        0.452        0.295        0.409        0.478  
+max          5.181        3.295        3.443        2.084        4.513  
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="high-cardinality-categorical-embeddings">
@@ -455,7 +577,7 @@ document.write(`
 <p>The Adult dataset’s ‘occupation’ column has many categories - perfect for target-based embeddings:</p>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get occupation counts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get occupation counts</span>
 <span class="n">occupation_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;occupation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Occupation column: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">occupation_counts</span><span class="p">)</span><span class="si">}</span><span class="s2"> unique values&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 occupations:&quot;</span><span class="p">)</span>
@@ -463,10 +585,29 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Occupation column: 14 unique values
+
+Top 10 occupations:
+occupation
+Prof-specialty       6172
+Craft-repair         6112
+Exec-managerial      6086
+Adm-clerical         5611
+Sales                5504
+Other-service        4923
+Machine-op-inspct    3022
+Transport-moving     2355
+Handlers-cleaners    2072
+Farming-fishing      1490
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learn embeddings for occupations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learn embeddings for occupations</span>
 <span class="c1"># df_sample already contains occupation column, so we can use it directly</span>
 <span class="n">occupation_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
     <span class="n">df_sample</span><span class="p">,</span>
@@ -485,13 +626,58 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_2"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">87</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">11,264</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">3</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">387</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">14</span>)             │            <span style="color: #00af00; text-decoration-color: #00af00">56</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">11,707</span> (45.73 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">11,707</span> (45.73 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Occupation embeddings shape: (14, 3)
+
+Occupation embeddings (3D):
+          embedding_0  embedding_1  embedding_2
+category                                       
+0               2.445        0.873        2.140
+1              -1.734       -0.412        1.660
+2               2.864       -1.616        0.076
+3               3.826        0.851        0.230
+4               3.530       -1.690       -1.161
+5               2.071       -1.488        1.006
+6               2.460       -1.688        1.049
+7               2.370       -0.589        1.986
+8               1.258        0.616        2.206
+9               3.094        2.700        0.074
+10              0.376        0.111        0.949
+11              3.734        0.032        0.748
+12              2.563        0.601        1.171
+13              2.398       -1.639        0.325
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="analyze-occupation-relationships">
 <h2>Analyze Occupation Relationships<a class="headerlink" href="#analyze-occupation-relationships" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify occupation_embeddings exists</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify occupation_embeddings exists</span>
 <span class="k">if</span> <span class="s1">&#39;occupation_embeddings&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: occupation_embeddings not found, recreating...&quot;</span><span class="p">)</span>
     <span class="n">occupation_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
@@ -524,10 +710,47 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Most similar occupation pairs:
+----------------------------------------
+0 &lt;-&gt; 3: 0.802
+0 &lt;-&gt; 7: 0.900
+0 &lt;-&gt; 8: 0.948
+0 &lt;-&gt; 10: 0.882
+0 &lt;-&gt; 11: 0.840
+0 &lt;-&gt; 12: 0.959
+2 &lt;-&gt; 4: 0.950
+2 &lt;-&gt; 5: 0.933
+2 &lt;-&gt; 6: 0.947
+2 &lt;-&gt; 11: 0.854
+2 &lt;-&gt; 13: 0.992
+3 &lt;-&gt; 9: 0.878
+3 &lt;-&gt; 11: 0.969
+3 &lt;-&gt; 12: 0.936
+4 &lt;-&gt; 13: 0.910
+5 &lt;-&gt; 6: 0.999
+5 &lt;-&gt; 7: 0.902
+5 &lt;-&gt; 11: 0.808
+5 &lt;-&gt; 13: 0.965
+6 &lt;-&gt; 7: 0.895
+6 &lt;-&gt; 11: 0.823
+6 &lt;-&gt; 13: 0.974
+7 &lt;-&gt; 8: 0.851
+7 &lt;-&gt; 10: 0.838
+7 &lt;-&gt; 11: 0.861
+7 &lt;-&gt; 12: 0.887
+8 &lt;-&gt; 10: 0.982
+8 &lt;-&gt; 12: 0.820
+9 &lt;-&gt; 12: 0.815
+11 &lt;-&gt; 12: 0.954
+11 &lt;-&gt; 13: 0.821
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify occupation_embeddings exists</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify occupation_embeddings exists</span>
 <span class="k">if</span> <span class="s1">&#39;occupation_embeddings&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: occupation_embeddings not found, recreating...&quot;</span><span class="p">)</span>
     <span class="n">occupation_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
@@ -573,13 +796,19 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/4791568f6d00c9dd9e084a6850abc47f0e4008d147712298817c6e9a4d0014c5.png" src="_images/4791568f6d00c9dd9e084a6850abc47f0e4008d147712298817c6e9a4d0014c5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Notice how similar occupations cluster together!
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="work-class-embeddings">
 <h2>Work Class Embeddings<a class="headerlink" href="#work-class-embeddings" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learn embeddings for work class</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learn embeddings for work class</span>
 <span class="c1"># df_sample already contains workclass column, so we can use it directly</span>
 <span class="n">workclass_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
     <span class="n">df_sample</span><span class="p">,</span>
@@ -597,10 +826,48 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_4"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">94</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">12,160</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">2</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">258</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">21</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">12,439</span> (48.59 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">12,439</span> (48.59 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Work class embeddings shape: (7, 2)
+
+Work class embeddings:
+          embedding_0  embedding_1
+category                          
+0              -3.429        1.326
+1              -3.981        0.188
+2              -4.749        2.017
+3              -2.858        1.971
+4              -2.570        2.595
+5              -3.861        0.506
+6               0.569        2.710
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify workclass_embeddings exists</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify workclass_embeddings exists</span>
 <span class="k">if</span> <span class="s1">&#39;workclass_embeddings&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: workclass_embeddings not found, recreating...&quot;</span><span class="p">)</span>
     <span class="n">workclass_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
@@ -635,13 +902,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/e35e0b8153196c968a847f8e309803eb1d23be5d831e8899866327e15e2a18d1.png" src="_images/e35e0b8153196c968a847f8e309803eb1d23be5d831e8899866327e15e2a18d1.png" />
+</div>
 </div>
 </section>
 <section id="compare-methods-on-adult-data">
 <h2>Compare Methods on Adult Data<a class="headerlink" href="#compare-methods-on-adult-data" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="c1"># Compare different methods</span>
 <span class="n">methods</span> <span class="o">=</span> <span class="p">{</span>
@@ -681,6 +951,48 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running Neural...
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_6"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">87</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_7 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">11,264</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">2</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">258</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_8 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │           <span style="color: #00af00; text-decoration-color: #00af00">384</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_9 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">87</span>)             │        <span style="color: #00af00; text-decoration-color: #00af00">11,223</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">23,129</span> (90.35 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">23,129</span> (90.35 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running PCA...
+Running t-SNE...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Method comparison results:
+------------------------------------------------------------
+Neural   | Time:   2.66s | Mean:  -0.018 | Std:  0.853
+PCA      | Time:   0.06s | Mean:   0.000 | Std:  1.104
+t-SNE    | Time:   5.01s | Mean:  -0.162 | Std: 15.505
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="feature-engineering-with-embeddings">
@@ -688,7 +1000,7 @@ document.write(`
 <p>Use embeddings as features for income prediction:</p>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
 
@@ -723,13 +1035,34 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Income distribution in sample:
+&lt;=50K: 3819 (76.4%)
+&gt;50K:  1181 (23.6%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Income prediction using embeddings:
+Accuracy: 0.812
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       &lt;=50K       0.85      0.91      0.88       764
+        &gt;50K       0.63      0.49      0.55       236
+
+    accuracy                           0.81      1000
+   macro avg       0.74      0.70      0.72      1000
+weighted avg       0.80      0.81      0.80      1000
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="scaling-for-different-ranges">
 <h2>Scaling for Different Ranges<a class="headerlink" href="#scaling-for-different-ranges" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate scaled embeddings for different use cases</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate scaled embeddings for different use cases</span>
 <span class="n">scaled_embeddings</span> <span class="o">=</span> <span class="n">learn_embedding</span><span class="p">(</span>
     <span class="n">df_sample</span><span class="p">,</span>
     <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;unsupervised&quot;</span><span class="p">,</span>
@@ -752,6 +1085,49 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_8"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">101</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_10 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">13,056</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">5</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">645</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_11 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │           <span style="color: #00af00; text-decoration-color: #00af00">768</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_7 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_12 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">101</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">13,029</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">27,498</span> (107.41 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">27,498</span> (107.41 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scaled embeddings statistics:
+Min: -1.000
+Max: 1.000
+Mean: 0.021
+Std: 0.202
+
+First 5 scaled embeddings:
+   embedding_0  embedding_1  embedding_2  embedding_3  embedding_4
+0       -0.480        0.033        0.909       -0.204       -0.392
+1       -0.530        0.041        0.764        0.148       -0.143
+2       -0.386       -0.030        0.662       -0.307       -0.158
+3       -0.478       -0.107        0.718        0.108       -0.104
+4       -0.096       -0.092        0.719       -0.374       -0.177
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="production-model">
@@ -759,7 +1135,7 @@ document.write(`
 <p>Create a model ready for deployment:</p>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_and_save_model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_and_save_model</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
@@ -797,6 +1173,90 @@ document.write(`
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Model successfully applied to new data:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test embeddings shape: </span><span class="si">{</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model training time: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">training_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_10"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">103</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_13 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">512</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">53,248</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_8 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">512</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">15</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">7,695</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_14 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">512</span>)            │         <span style="color: #00af00; text-decoration-color: #00af00">8,192</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_9 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">512</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_15 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">103</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">52,839</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">121,974</span> (476.46 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">121,974</span> (476.46 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">  1/313</span> <span class=" -Color -Color-White">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">8s</span> 28ms/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold"> 65/313</span> <span class=" -Color -Color-Green">━━━━</span><span class=" -Color -Color-White">━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 788us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold">130/313</span> <span class=" -Color -Color-Green">━━━━━━━━</span><span class=" -Color -Color-White">━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 785us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold">194/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━</span><span class=" -Color -Color-White">━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 785us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold">258/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━</span><span class=" -Color -Color-White">━━━━</span> <span class=" -Color -Color-Bold">0s</span> 786us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold">313/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 834us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Bold">313/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 871us/step
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Production model saved: adult_model.py
+Final embeddings shape: (10000, 15)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">30</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Load and test</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="kn">from</span><span class="w"> </span><span class="nn">row2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+<span class="ne">---&gt; </span><span class="mi">30</span> <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="c1"># Test on new data</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">df_features</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="nn">File ~/work/row2vec/row2vec/row2vec/serialization.py:398,</span> in <span class="ni">load_model</span><span class="nt">(script_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span> <span class="c1"># Execute the script in a controlled namespace</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="c1"># Add the script directory to help find the binary file</span>
+<span class="g g-Whitespace">    </span><span class="mi">394</span> <span class="n">namespace</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span>     <span class="s2">&quot;__script_dir__&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">script_path</span><span class="o">.</span><span class="n">parent</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span>     <span class="s2">&quot;__script_path__&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">script_path</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span> <span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">398</span> <span class="n">exec</span><span class="p">(</span><span class="n">script_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="n">namespace</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span> <span class="c1"># Get the load function from the script</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span> <span class="k">if</span> <span class="s2">&quot;load_model&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">namespace</span><span class="p">:</span>
+
+<span class="n">File</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">43</span>
+
+<span class="ne">NameError</span>: name &#39;nan&#39; is not defined
 </pre></div>
 </div>
 </div>

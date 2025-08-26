@@ -435,7 +435,7 @@ pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w
 <h2>Verify Installation<a class="headerlink" href="#verify-installation" title="Link to this heading">#</a></h2>
 <div class="cell tag_remove-stderr tag_remove-warnings docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import complete suppression first</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import complete suppression first</span>
 <span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;suppress_minimal.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">row2vec</span>
@@ -449,6 +449,21 @@ pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- pca (Principal Component Analysis)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- tsne (t-Distributed Stochastic Neighbor Embedding)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- umap (Uniform Manifold Approximation and Projection)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✓ Enhanced minimal suppression active
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Row2Vec version: 0.1.0
+
+Available embedding modes:
+- unsupervised (neural network autoencoder)
+- target (supervised categorical embeddings)
+- pca (Principal Component Analysis)
+- tsne (t-Distributed Stochastic Neighbor Embedding)
+- umap (Uniform Manifold Approximation and Projection)
 </pre></div>
 </div>
 </div>
